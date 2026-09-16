@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RainbowEyes — Style Your Story</title>
+<meta name="description" content="Handmade pipe cleaner and artificial flowers, twisted and shaped one bloom at a time. RainbowEyes — style your story.">
+<link rel="icon" href="rainboweyes-logo-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;} .order-bar{display:none !important;}</style></noscript>
+<style>
+  :root{
+    --cream:#FCFBF7;
+    --paper:#FFFFFF;
+    --ink:#0F1E36;
+    --ink-soft:#5B6478;
+    --ink-faint:#8A93A6;
+
+    --coral:#F04A22;
+    --amber:#FC8D31;
+    --gold:#F4B93A;
+    --leaf:#3EBF3A;
+    --sky:#2792D0;
+    --violet:#A968C4;
+
+    --coral-tint:#FDEAE3;
+    --sky-tint:#E7F1FA;
+    --gold-tint:#FDF2DD;
+
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow-soft:0 14px 40px rgba(15,30,54,0.08);
+    --shadow-lift:0 20px 50px rgba(15,30,54,0.14);
+    --wrap:1180px;
+  }
+
+  /* ---------- THEME VARIANTS ---------- */
+  html[data-theme="pastel"]{
+    --coral:#F5A697; --amber:#F7C48D; --gold:#F6DD9B; --leaf:#A6DFB0; --sky:#A9D4EE; --violet:#D2B8E8;
+    --coral-tint:#FBEDE9; --sky-tint:#EDF5FB; --gold-tint:#FBF6E9;
+  }
+  html[data-theme="sunset"]{
+    --coral:#E23E57; --amber:#F2793A; --gold:#F5B942; --leaf:#4C9A6A; --sky:#3E6E9E; --violet:#8E4585;
+    --coral-tint:#FBE3E7; --sky-tint:#E7EEF5; --gold-tint:#FCF1DD;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    margin:0;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0; line-height:1.65; color:var(--ink-soft);}
+  .script{font-family:'Caveat', cursive; font-weight:600;}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 6vw;}
+  section{padding:96px 0;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--coral); margin-bottom:16px;
+  }
+  .eyebrow::before{content:''; width:22px; height:2px; background:var(--coral); border-radius:2px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px;
+    padding:14px 26px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--ink); color:var(--cream); box-shadow:0 10px 24px rgba(15,30,54,.22);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(15,30,54,.28);}
+  .btn-outline{background:transparent; color:var(--ink); border:2px solid rgba(15,30,54,.16);}
+  .btn-outline:hover{border-color:var(--ink); transform:translateY(-2px);}
+  .btn-whatsapp{background:#25D366; color:#06301A; box-shadow:0 10px 24px rgba(37,211,102,.35);}
+  .btn-whatsapp:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(37,211,102,.42);}
+  .btn-sm{padding:10px 18px; font-size:13px;}
+  .btn:disabled{opacity:.45; cursor:not-allowed; transform:none !important; box-shadow:none !important;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:200;
+    background:rgba(252,251,247,.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(15,30,54,.06);
+    transition:padding .3s ease, box-shadow .3s ease;
+  }
+  .scroll-rail{width:100%; height:4px; background:rgba(15,30,54,.06); overflow:visible;}
+  .scroll-rail-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--coral),var(--amber),var(--gold),var(--leaf),var(--sky),var(--violet)); position:relative;}
+  .scroll-rail-flower{
+    position:absolute; right:-11px; top:50%; width:22px; transform:translateY(-50%);
+    filter:drop-shadow(0 2px 4px rgba(15,30,54,.3)); animation:swayGentle 2.4s ease-in-out infinite;
+  }
+  .nav-right .btn-whatsapp{animation:whatsappGlow 3s ease-in-out infinite;}
+  @keyframes whatsappGlow{
+    0%,100%{box-shadow:0 10px 24px rgba(37,211,102,.35);}
+    50%{box-shadow:0 10px 28px rgba(37,211,102,.65), 0 0 0 6px rgba(37,211,102,.14);}
+  }
+  nav{
+    max-width:var(--wrap); margin:0 auto; padding:16px 6vw;
+    display:flex; align-items:center; justify-content:space-between;
+    transition:padding .3s ease;
+  }
+  header.scrolled nav{padding:10px 6vw;}
+  header.scrolled{box-shadow:0 6px 24px rgba(15,30,54,.06);}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand img{height:42px; width:auto; transition:height .3s ease;}
+  header.scrolled .brand img{height:34px;}
+  .brand-word{font-family:'Fredoka',sans-serif; font-weight:700; font-size:20px; color:var(--ink);}
+  .nav-links{display:flex; align-items:center; gap:34px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    text-decoration:none; font-weight:600; font-size:14.5px; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background:linear-gradient(90deg,var(--coral),var(--gold),var(--leaf),var(--sky),var(--violet));
+    transition:width .25s ease; border-radius:2px;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-right{display:flex; align-items:center; gap:18px;}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{display:block; width:24px; height:2.5px; background:var(--ink); margin:5px 0; border-radius:2px; transition:.25s;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 40px; position:relative; overflow:hidden;}
+  .hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  .hero h1{font-size:clamp(34px,4.4vw,58px); margin-bottom:22px;}
+  .hero h1 .hl{position:relative; white-space:nowrap;}
+  .hero h1 .hl::after{
+    content:''; position:absolute; left:0; right:0; bottom:2px; height:.32em;
+    background:linear-gradient(90deg,var(--coral-tint),var(--gold-tint));
+    z-index:-1; border-radius:6px;
+  }
+  .hero p.lead{font-size:18px; max-width:480px; margin-bottom:34px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px;}
+  .hero-art{position:relative; display:flex; align-items:center; justify-content:center;}
+  .hero-art .halo{
+    position:absolute; inset:0; margin:auto; width:88%; aspect-ratio:1;
+    background:radial-gradient(circle, rgba(244,185,58,.20), rgba(244,74,32,.10) 45%, transparent 70%);
+    border-radius:50%; filter:blur(6px);
+    animation:pulseHalo 5s ease-in-out infinite;
+  }
+  .hero-art img{position:relative; width:100%; max-width:460px; margin:0 auto; animation:floaty 6s ease-in-out infinite;}
+  .hero-flower{position:absolute; width:70px; opacity:.95; transform-box:fill-box; transform-origin:center;}
+  .hero-flower.f1{top:6%; left:-2%; width:64px; animation:floatSway 5s ease-in-out infinite;}
+  .hero-flower.f2{bottom:8%; right:-4%; width:78px; animation:floatSway 7s ease-in-out infinite 1s;}
+  .hero-flower.f3{bottom:-2%; left:12%; width:52px; animation:floatSway 6.5s ease-in-out infinite .5s;}
+  .hero-flower.f4{top:2%; right:8%; width:46px; animation:floatSway 5.8s ease-in-out infinite 1.4s;}
+  .hero-flower.f5{top:44%; left:-8%; width:40px; animation:floatSway 6.2s ease-in-out infinite .8s;}
+  @keyframes floaty{0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);}}
+  @keyframes floatSway{0%,100%{transform:translateY(0) rotate(-5deg);} 50%{transform:translateY(-16px) rotate(6deg);}}
+  @keyframes pulseHalo{0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.7; transform:scale(1.06);}}
+  .trust-row{display:flex; gap:28px; margin-top:38px; flex-wrap:wrap;}
+  .trust-item{display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; color:var(--ink-soft);}
+  .trust-dot{width:9px; height:9px; border-radius:50%;}
+  .scroll-cue{
+    position:relative; z-index:2; display:flex; width:40px; height:40px; margin:36px auto 0;
+    align-items:center; justify-content:center; border-radius:50%; color:var(--ink-soft);
+    border:1.5px solid rgba(15,30,54,.14); text-decoration:none; animation:bounceCue 2.2s ease-in-out infinite;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .scroll-cue:hover{color:var(--coral); border-color:var(--coral);}
+  @keyframes bounceCue{0%,100%{transform:translateY(0);} 50%{transform:translateY(7px);}}
+
+  /* ---------- AMBIENT PETALS ---------- */
+  .petal-field{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1;}
+  .petal-field .petal{
+    position:absolute; top:-14%; left:var(--x,10%); width:var(--size,20px); opacity:0;
+    animation:petalFall var(--duration,16s) linear infinite;
+    animation-delay:var(--delay,0s);
+    will-change:transform, opacity;
+  }
+  .petal-field.dark .petal{opacity:0;}
+  @keyframes petalFall{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:.85; }
+    50%{ transform:translateY(60vh) translateX(var(--drift,26px)) rotate(180deg); }
+    92%{ opacity:.6; }
+    100%{ transform:translateY(122vh) translateX(calc(var(--drift,26px) * -1)) rotate(360deg); opacity:0; }
+  }
+  @keyframes bloomPop{
+    0%{ transform:scale(.25) rotate(-25deg); opacity:0; }
+    60%{ transform:scale(1.1) rotate(4deg); opacity:1; }
+    100%{ transform:scale(1) rotate(0deg); opacity:1; }
+  }
+  @keyframes swayGentle{0%,100%{transform:rotate(-4deg);} 50%{transform:rotate(4deg);}}
+
+  /* ---------- WIRE DIVIDER (signature) ---------- */
+  .wire-divider{width:100%; overflow:hidden; margin:0; line-height:0;}
+  .wire-divider svg{width:100%; height:auto; display:block;}
+  .wire-divider path.wire-path{
+    fill:none; stroke-width:3.5; stroke-linecap:round;
+    transition:stroke-dashoffset 1.8s cubic-bezier(.2,.7,.2,1);
+  }
+  .wire-divider{position:relative;}
+  .wire-flower{opacity:0; transform-box:fill-box; transform-origin:center;}
+  .wire-divider.in-view .wire-flower{animation:bloomPop .6s cubic-bezier(.34,1.56,.64,1) 1.7s backwards;}
+
+  /* ---------- CATEGORIES ---------- */
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(28px,3.2vw,40px); margin-bottom:14px;}
+  .categories-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .categories-grid-3{grid-template-columns:repeat(3,1fr); gap:24px;}
+  .cat-card{
+    border-radius:var(--radius-lg); padding:44px; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; gap:18px; min-height:360px;
+    box-shadow:var(--shadow-soft); transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .cat-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lift);}
+  .cat-card.warm{background:linear-gradient(155deg,#FFF3EC,#FDE7DA 60%,#FCEFD8);}
+  .cat-card.cool{background:linear-gradient(155deg,#EAF3FB,#EFEAF7 60%,#EAF6EF);}
+  .cat-card.sweet{background:linear-gradient(155deg,#FFF7EA,#FDEFDD 60%,#FBE9E3);}
+  .cat-tag{
+    align-self:flex-start; font-size:12.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    padding:7px 14px; border-radius:999px; color:var(--paper);
+  }
+  .cat-card.warm .cat-tag{background:var(--coral);}
+  .cat-card.cool .cat-tag{background:var(--sky);}
+  .cat-card.sweet .cat-tag{background:var(--gold); color:var(--ink);}
+  .cat-card.sweet .cat-icons{right:6px;}
+  .cat-card.sweet .cat-icons svg{width:120px;}
+  .cat-card h3{font-size:28px; margin-top:4px;}
+  .cat-card p{max-width:400px; margin-bottom:6px;}
+  .cat-card .cat-icons{position:absolute; right:-10px; bottom:-14px; display:flex; gap:-10px; opacity:.9;}
+  .cat-card .cat-icons svg{width:92px; height:auto; transform-box:fill-box; transform-origin:center; animation:swayGentle 4.5s ease-in-out infinite;}
+  .cat-card .cat-icons svg:nth-child(2){margin-left:-24px; width:78px; margin-bottom:26px; animation-duration:5.2s; animation-delay:.6s;}
+  .cat-card:hover .cat-icons svg{animation-play-state:paused; transform:scale(1.06) rotate(-3deg);}
+  .cat-card a.btn{margin-top:auto; width:fit-content;}
+
+  /* ---------- CUSTOMIZER ---------- */
+  .customizer{
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:stretch;
+    background:var(--paper); border-radius:var(--radius-lg); padding:44px;
+    box-shadow:var(--shadow-soft);
+  }
+  .customizer-preview{
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; background:linear-gradient(160deg,#FAF7F1,#F3EFE6); border-radius:var(--radius-md);
+    padding:36px; text-align:center; overflow:hidden;
+  }
+  .customizer-preview-halo{
+    position:absolute; width:70%; aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle, rgba(244,185,58,.22), rgba(244,74,32,.10) 45%, transparent 70%);
+    filter:blur(4px); animation:pulseHalo 4s ease-in-out infinite;
+  }
+  .preview-flower{position:relative; width:180px; height:auto; transform-box:fill-box; transform-origin:center; filter:drop-shadow(0 10px 18px rgba(15,30,54,.14));}
+  .preview-flower.pulse{animation:bloomPop .5s cubic-bezier(.34,1.56,.64,1);}
+  .preview-caption{position:relative; font-weight:700; font-size:14px; color:var(--ink-soft); letter-spacing:.02em;}
+  .customizer-controls{display:flex; flex-direction:column; gap:26px;}
+  .control-group{display:flex; flex-direction:column; gap:10px;}
+  .control-label{font-size:12.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint);}
+  .pill-toggle{display:inline-flex; background:var(--cream); border:1.5px solid rgba(15,30,54,.08); border-radius:999px; padding:4px; gap:4px; width:fit-content;}
+  .pill-btn{
+    border:none; background:transparent; color:var(--ink-soft); font-weight:700; font-size:13.5px;
+    padding:9px 18px; border-radius:999px; cursor:pointer; transition:background .25s ease, color .25s ease;
+  }
+  .pill-btn.active{background:var(--ink); color:var(--cream);}
+  .shape-toggle{display:flex; flex-wrap:wrap; gap:10px;}
+  .shape-btn{
+    display:none; flex-direction:column; align-items:center; gap:6px;
+    border:2px solid rgba(15,30,54,.1); background:var(--cream); border-radius:14px;
+    padding:10px 14px; cursor:pointer; font-size:12px; font-weight:700; color:var(--ink-soft);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .shape-btn.shape-visible{display:flex;}
+  .shape-btn svg{width:34px; height:auto; --petal:var(--ink-faint);}
+  .shape-btn:hover{transform:translateY(-2px);}
+  .shape-btn.active{border-color:var(--ink); color:var(--ink);}
+  .shape-btn.active svg{--petal:var(--coral);}
+  .swatch-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .swatch{
+    width:36px; height:36px; border-radius:50%; background:var(--sw); border:2px solid var(--paper);
+    box-shadow:0 0 0 1.5px rgba(15,30,54,.14); cursor:pointer; transition:transform .2s ease, box-shadow .2s ease;
+    padding:0;
+  }
+  .swatch:hover{transform:scale(1.12);}
+  .swatch.active{box-shadow:0 0 0 3px var(--paper), 0 0 0 5px var(--ink); transform:scale(1.08);}
+  .qty-stepper{display:inline-flex; align-items:center; gap:16px; background:var(--cream); border:1.5px solid rgba(15,30,54,.08); border-radius:999px; padding:6px 10px; width:fit-content;}
+  .qty-btn{
+    width:32px; height:32px; border-radius:50%; border:none; background:var(--paper); color:var(--ink);
+    font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 2px 6px rgba(15,30,54,.1);
+    transition:transform .15s ease;
+  }
+  .qty-btn:hover{transform:scale(1.08);}
+  .qty-btn:active{transform:scale(.92);}
+  #qtyValue{font-family:'Fredoka',sans-serif; font-size:17px; min-width:22px; text-align:center; display:inline-block;}
+  #qtyValue.bump{animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+  .customizer-footer{
+    display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:auto;
+    padding-top:20px; border-top:1px solid rgba(15,30,54,.08); flex-wrap:wrap;
+  }
+  .customizer-price{display:flex; flex-direction:column; gap:2px;}
+  .customizer-price span{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint);}
+  .customizer-price strong{font-family:'Fredoka',sans-serif; font-size:22px;}
+  .customizer-price strong.bump{animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+  #addCustomBtn.added{background:var(--leaf); box-shadow:0 10px 24px rgba(62,191,58,.3);}
+
+  /* ---------- GIFT BOX CUSTOMIZER ---------- */
+  .giftbox-preview .preview-giftbox{width:220px; height:auto; position:relative; filter:drop-shadow(0 10px 18px rgba(15,30,54,.14));}
+  .gift-layer{transform-box:fill-box; transform-origin:center;}
+  .gift-layer.hidden{display:none;}
+  .gift-layer.pop{animation:bloomPop .5s cubic-bezier(.34,1.56,.64,1);}
+  #previewGiftToyBunny.hidden, #previewGiftToyTeddy.hidden{display:none;}
+  .addon-list{display:flex; flex-direction:column; gap:10px;}
+  .addon-row{display:flex; flex-direction:column; gap:8px;}
+  .chip{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%;
+    border:2px solid rgba(15,30,54,.1); background:var(--cream); border-radius:14px;
+    padding:11px 16px; cursor:pointer; font-size:14px; font-weight:700; color:var(--ink-soft);
+    transition:border-color .2s ease, background .2s ease, color .2s ease, transform .15s ease;
+    text-align:left;
+  }
+  .chip:hover{transform:translateY(-1px);}
+  .chip.active{border-color:var(--leaf); background:rgba(62,191,58,.08); color:var(--ink);}
+  .chip-price{font-size:12px; font-weight:800; color:var(--ink-faint); white-space:nowrap;}
+  .chip.active .chip-price{color:var(--leaf);}
+  .sub-pill{
+    display:none; gap:6px; padding-left:6px; animation:fadeSlideDown .25s ease;
+  }
+  .sub-pill.sub-visible{display:flex;}
+  @keyframes fadeSlideDown{0%{opacity:0; transform:translateY(-6px);} 100%{opacity:1; transform:translateY(0);}}
+  .sub-pill-btn{
+    border:1.5px solid rgba(15,30,54,.12); background:var(--paper); color:var(--ink-soft);
+    font-size:12px; font-weight:700; padding:6px 13px; border-radius:999px; cursor:pointer; transition:.2s;
+  }
+  .sub-pill-btn.active{background:var(--ink); color:var(--cream); border-color:var(--ink);}
+  #addGiftBtn.added{background:var(--leaf); box-shadow:0 10px 24px rgba(62,191,58,.3);}
+
+  /* ---------- STATIONERY GIFT BOX CUSTOMIZER ---------- */
+  .giftbox-stage{position:relative; width:220px; aspect-ratio:1; margin:0 auto;}
+  .giftbox-stage .preview-giftbox{position:relative; width:100%; height:100%;}
+  .box-contents{position:absolute; inset:0; pointer-events:none;}
+  .content-thumb{
+    position:absolute; width:15%; aspect-ratio:1; border-radius:9px; overflow:hidden;
+    background:#fff; box-shadow:0 4px 10px rgba(15,30,54,.22), 0 0 0 2px rgba(255,255,255,.95);
+    opacity:0; transform:scale(0) rotate(0deg); transition:opacity .2s ease;
+  }
+  .content-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .content-thumb.show{opacity:1; transform:scale(1) rotate(var(--rot,0deg));}
+  .content-thumb.show.pop{animation:contentPop .5s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes contentPop{
+    0%{opacity:0; transform:scale(0) rotate(var(--rot,0deg));}
+    60%{opacity:1; transform:scale(1.18) rotate(var(--rot,0deg));}
+    100%{opacity:1; transform:scale(1) rotate(var(--rot,0deg));}
+  }
+  .content-thumb[data-item="clay"]{left:4%; top:26%; --rot:-9deg;}
+  .content-thumb[data-item="pencils"]{left:78%; top:16%; --rot:7deg;}
+  .content-thumb[data-item="filebox"]{left:-2%; top:56%; --rot:-6deg;}
+  .content-thumb[data-item="fileunicorn"]{left:86%; top:52%; --rot:8deg;}
+  .content-thumb[data-item="eraser"]{left:10%; top:82%; --rot:10deg;}
+  .content-thumb[data-item="pad"]{left:38%; top:88%; --rot:-5deg;}
+  .content-thumb[data-item="geometry"]{left:70%; top:84%; --rot:6deg;}
+  .item-list{gap:8px;}
+  .item-chip{justify-content:flex-start;}
+  .chip-thumb{width:34px; height:34px; border-radius:9px; overflow:hidden; flex-shrink:0; background:#fff; box-shadow:0 0 0 1px rgba(15,30,54,.08);}
+  .chip-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .chip-label{flex:1;}
+  #addStatBtn.added{background:var(--leaf); box-shadow:0 10px 24px rgba(62,191,58,.3);}
+
+  /* ---------- SHOP ---------- */
+  .shop-head{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:40px;}
+  .filters{display:flex; gap:10px; flex-wrap:wrap;}
+  .filter-btn{
+    border:2px solid rgba(15,30,54,.12); background:var(--paper); color:var(--ink-soft);
+    font-weight:700; font-size:13.5px; padding:10px 20px; border-radius:999px; cursor:pointer;
+    transition:.25s;
+  }
+  .filter-btn.active{background:var(--ink); color:var(--cream); border-color:var(--ink);}
+  .filter-btn:hover:not(.active){border-color:var(--ink);}
+  .shop-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:26px;}
+  .product-card{
+    background:var(--paper); border-radius:var(--radius-md); overflow:hidden;
+    box-shadow:var(--shadow-soft); display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease; opacity:1;
+  }
+  .product-card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lift);}
+  .product-card.hidden{display:none;}
+  .product-card.pop-in{animation:cardPopIn .45s cubic-bezier(.3,.9,.4,1.2);}
+  @keyframes cardPopIn{0%{opacity:0; transform:scale(.88) translateY(10px);} 100%{opacity:1; transform:scale(1) translateY(0);}}
+  .product-visual{
+    height:190px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg,#FAF7F1,#F3EFE6);
+    position:relative;
+  }
+  .product-visual svg{width:108px; height:auto; transform-box:fill-box; transform-origin:center; transition:transform .4s cubic-bezier(.3,.7,.4,1.4);}
+  .product-card:hover .product-visual svg{transform:scale(1.1) rotate(-5deg);}
+  .shop-grid.in-view .product-visual svg{animation:bloomPop .7s cubic-bezier(.34,1.56,.64,1) backwards;}
+  .shop-grid .product-card:nth-child(1) .product-visual svg{animation-delay:.05s;}
+  .shop-grid .product-card:nth-child(2) .product-visual svg{animation-delay:.11s;}
+  .shop-grid .product-card:nth-child(3) .product-visual svg{animation-delay:.17s;}
+  .shop-grid .product-card:nth-child(4) .product-visual svg{animation-delay:.23s;}
+  .shop-grid .product-card:nth-child(5) .product-visual svg{animation-delay:.29s;}
+  .shop-grid .product-card:nth-child(6) .product-visual svg{animation-delay:.35s;}
+  .shop-grid .product-card:nth-child(7) .product-visual svg{animation-delay:.41s;}
+  .shop-grid .product-card:nth-child(8) .product-visual svg{animation-delay:.47s;}
+  .shop-grid .product-card:nth-child(9) .product-visual svg{animation-delay:.53s;}
+  .shop-grid .product-card:nth-child(10) .product-visual svg{animation-delay:.59s;}
+  .shop-grid .product-card:nth-child(11) .product-visual svg{animation-delay:.65s;}
+  .product-visual img{width:100%; height:100%; object-fit:contain; padding:16px; transition:transform .4s cubic-bezier(.3,.7,.4,1.4);}
+  .product-card:hover .product-visual img{transform:scale(1.06);}
+  .shop-grid.in-view .product-visual img{animation:bloomPop .7s cubic-bezier(.34,1.56,.64,1) backwards;}
+  .shop-grid .product-card:nth-child(12) .product-visual svg,.shop-grid .product-card:nth-child(12) .product-visual img{animation-delay:.05s;}
+  .shop-grid .product-card:nth-child(13) .product-visual svg,.shop-grid .product-card:nth-child(13) .product-visual img{animation-delay:.11s;}
+  .shop-grid .product-card:nth-child(14) .product-visual svg,.shop-grid .product-card:nth-child(14) .product-visual img{animation-delay:.17s;}
+  .shop-grid .product-card:nth-child(15) .product-visual svg,.shop-grid .product-card:nth-child(15) .product-visual img{animation-delay:.23s;}
+  .shop-grid .product-card:nth-child(16) .product-visual svg,.shop-grid .product-card:nth-child(16) .product-visual img{animation-delay:.29s;}
+  .shop-grid .product-card:nth-child(17) .product-visual svg,.shop-grid .product-card:nth-child(17) .product-visual img{animation-delay:.35s;}
+  .shop-grid .product-card:nth-child(18) .product-visual svg,.shop-grid .product-card:nth-child(18) .product-visual img{animation-delay:.41s;}
+  .product-visual .badge{
+    position:absolute; top:12px; left:12px; background:var(--paper); color:var(--ink);
+    font-size:11px; font-weight:800; letter-spacing:.04em; padding:5px 11px; border-radius:999px;
+    box-shadow:0 4px 12px rgba(15,30,54,.12);
+  }
+  .product-info{padding:20px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .product-tag{font-size:11.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);}
+  .product-info h4{font-size:17.5px;}
+  .product-desc{font-size:13.5px; flex:1;}
+  .product-footer{display:flex; align-items:center; justify-content:space-between; margin-top:10px; gap:10px;}
+  .price{font-family:'Fredoka',sans-serif; font-weight:600; font-size:16px;}
+  .order-btn{
+    border:2px solid var(--ink); background:transparent; color:var(--ink);
+    font-weight:700; font-size:12.5px; padding:9px 15px; border-radius:999px; cursor:pointer;
+    transition:.25s; white-space:nowrap;
+  }
+  .order-btn:hover{background:var(--ink); color:var(--cream);}
+  .order-btn.selected{background:var(--leaf); border-color:var(--leaf); color:#fff; animation:popIn .35s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes popIn{0%{transform:scale(1);} 45%{transform:scale(1.14);} 100%{transform:scale(1);}}
+  .petal-burst{
+    position:absolute; width:9px; height:13px; border-radius:60% 60% 60% 2%;
+    pointer-events:none; z-index:400; opacity:1; transform:translate(-50%,-50%);
+    animation:petalBurst .75s ease-out forwards;
+  }
+  @keyframes petalBurst{
+    0%{ transform:translate(-50%,-50%) translate(0,0) rotate(0deg) scale(1); opacity:1; }
+    100%{ transform:translate(-50%,-50%) translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(.35); opacity:0; }
+  }
+
+  /* ---------- THEME SWITCHER ---------- */
+  .theme-switcher{position:fixed; left:22px; bottom:26px; z-index:290;}
+  .theme-fab{
+    width:52px; height:52px; border-radius:50%; background:var(--paper); border:2px solid rgba(15,30,54,.1);
+    box-shadow:var(--shadow-lift); display:flex; align-items:center; justify-content:center; color:var(--ink);
+    cursor:pointer; animation:themeFabPulse 3.2s ease-in-out infinite; transition:transform .2s ease;
+  }
+  .theme-fab:hover{transform:scale(1.06);}
+  @keyframes themeFabPulse{
+    0%,100%{box-shadow:var(--shadow-lift);}
+    50%{box-shadow:0 0 0 8px rgba(244,74,32,.12), var(--shadow-lift);}
+  }
+  .theme-panel{
+    position:absolute; left:0; bottom:64px; width:220px; background:var(--paper); border-radius:18px;
+    padding:18px; box-shadow:var(--shadow-lift); opacity:0; transform:translateY(10px) scale(.95);
+    pointer-events:none; transition:opacity .25s ease, transform .25s ease; transform-origin:bottom left;
+  }
+  .theme-panel.open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+  .theme-panel h5{font-family:'Fredoka',sans-serif; font-size:15px; margin-bottom:4px;}
+  .theme-panel p{font-size:12.5px; margin-bottom:14px;}
+  .theme-options{display:flex; flex-direction:column; gap:8px;}
+  .theme-option{
+    display:flex; align-items:center; gap:10px; background:transparent; border:1.5px solid rgba(15,30,54,.08);
+    border-radius:12px; padding:8px 10px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ink-soft);
+    transition:border-color .2s ease, background .2s ease, color .2s ease;
+  }
+  .theme-option:hover{border-color:rgba(15,30,54,.25);}
+  .theme-option.active{border-color:var(--ink); color:var(--ink); background:rgba(15,30,54,.045);}
+  .theme-swatch-preview{width:22px; height:22px; border-radius:50%; flex-shrink:0;}
+  .theme-rainbow{background:conic-gradient(from 180deg,#F04A22,#FC8D31,#F4B93A,#3EBF3A,#2792D0,#A968C4,#F04A22);}
+  .theme-pastel{background:conic-gradient(from 180deg,#F5A697,#F7C48D,#F6DD9B,#A6DFB0,#A9D4EE,#D2B8E8,#F5A697);}
+  .theme-sunset{background:conic-gradient(from 180deg,#E23E57,#F2793A,#F5B942,#4C9A6A,#3E6E9E,#8E4585,#E23E57);}
+
+  /* ---------- ORDER BAR ---------- */
+  .order-bar{
+    position:fixed; left:50%; bottom:26px; transform:translate(-50%, 140%);
+    background:var(--ink); color:var(--cream); border-radius:999px;
+    padding:12px 12px 12px 22px; display:flex; align-items:center; gap:16px;
+    box-shadow:0 18px 46px rgba(15,30,54,.35); z-index:300;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1); max-width:92vw;
+  }
+  .order-bar.show{transform:translate(-50%, 0);}
+  .order-bar span{font-size:13.5px; font-weight:600; white-space:nowrap;}
+  .order-bar strong{font-family:'Fredoka',sans-serif;}
+
+  /* ---------- STORY ---------- */
+  .story{background:var(--ink); color:var(--cream); border-radius:var(--radius-lg); position:relative; overflow:hidden;}
+  .story .wrap{padding:70px 6vw; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .story h2{color:var(--paper); font-size:clamp(26px,3vw,36px); margin-bottom:20px;}
+  .story p{color:rgba(252,251,247,.72); margin-bottom:16px; font-size:15.5px;}
+  .story-strip{height:6px; width:120px; border-radius:6px; margin-bottom:24px;
+    background:linear-gradient(90deg,var(--coral),var(--amber),var(--gold),var(--leaf),var(--sky),var(--violet));}
+  .story-quote{font-family:'Caveat',cursive; font-size:30px; color:var(--gold); margin-top:22px;}
+  .story-art{display:flex; align-items:center; justify-content:center; gap:8px;}
+  .story-art svg{width:150px; transform-box:fill-box; transform-origin:center; animation:swayGentle 5s ease-in-out infinite;}
+  .story-art svg:nth-child(2){animation-duration:6s; animation-delay:.4s;}
+  .story-art svg:nth-child(3){animation-duration:4.4s; animation-delay:.8s;}
+
+  /* ---------- STEPS ---------- */
+  .steps-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; counter-reset:step;}
+  .step-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:34px 28px;
+    box-shadow:var(--shadow-soft); position:relative;
+  }
+  .step-num{
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:15px;
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#fff; margin-bottom:18px;
+  }
+  .step-card:nth-child(1) .step-num{background:var(--coral);}
+  .step-card:nth-child(2) .step-num{background:var(--gold); color:var(--ink);}
+  .step-card:nth-child(3) .step-num{background:var(--sky);}
+  .step-card h4{font-size:18px; margin-bottom:10px;}
+  .step-card p{font-size:14px;}
+
+  /* ---------- CARE / INFO ---------- */
+  .care-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .care-card{border:1.5px solid rgba(15,30,54,.1); border-radius:var(--radius-md); padding:28px; background:var(--paper);}
+  .care-card .dot{width:34px; height:34px; border-radius:10px; margin-bottom:16px;}
+  .care-card h4{font-size:16.5px; margin-bottom:8px;}
+  .care-card p{font-size:13.8px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{background:#0C1830; color:rgba(252,251,247,.82); padding-top:80px;}
+  .footer-top{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:50px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer-brand img{height:44px; margin-bottom:16px; border-radius:10px;}
+  .footer-brand p{color:rgba(252,251,247,.6); font-size:14px; max-width:280px;}
+  .footer-tagline{font-family:'Caveat',cursive; font-size:22px; color:var(--gold); margin-top:10px; display:block;}
+  .footer-col h5{font-family:'Fredoka',sans-serif; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--paper); margin-bottom:18px;}
+  .footer-col ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .footer-col a{text-decoration:none; color:rgba(252,251,247,.68); font-size:14.5px; transition:.2s;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-contact-btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:6px;
+  }
+  .bottom-bar{display:flex; justify-content:space-between; align-items:center; padding:26px 0; flex-wrap:wrap; gap:12px;}
+  .bottom-bar p{font-size:13px; color:rgba(252,251,247,.5);}
+  .rainbow-strip{height:5px; width:100%;
+    background:linear-gradient(90deg,var(--coral),var(--amber),var(--gold),var(--leaf),var(--sky),var(--violet));}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .hero-art img, .hero-flower, .halo, .cat-icons svg, .story-art svg{animation:none !important;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .wire-divider path.wire-path{transition:none;}
+    .wire-divider .wire-flower{animation:none !important; opacity:1 !important; transform:none !important;}
+    .petal-field{display:none !important;}
+    .shop-grid.in-view .product-visual svg{animation:none !important; opacity:1 !important;}
+    .order-btn.selected{animation:none !important;}
+    .petal-burst{display:none !important;}
+    .scroll-cue{animation:none !important;}
+    .scroll-rail-flower{animation:none !important;}
+    .theme-fab{animation:none !important;}
+    .nav-right .btn-whatsapp{animation:none !important;}
+    .customizer-preview-halo{animation:none !important;}
+    .preview-flower.pulse, #qtyValue.bump, .customizer-price strong.bump, .order-btn.selected{animation:none !important;}
+    .product-card.pop-in{animation:none !important;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr; text-align:left;}
+    .hero-art{order:-1; max-width:340px; margin:0 auto 12px;}
+    .categories-grid{grid-template-columns:1fr;}
+    .customizer{grid-template-columns:1fr; padding:30px;}
+    .story .wrap{grid-template-columns:1fr; padding:56px 7vw;}
+    .story-art{order:-1;}
+    .steps-grid{grid-template-columns:1fr;}
+    .care-grid{grid-template-columns:1fr 1fr;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    section{padding:66px 0;}
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0; background:var(--paper);
+      flex-direction:column; align-items:flex-start; gap:0; padding:10px 6vw 20px;
+      box-shadow:0 16px 30px rgba(15,30,54,.1); transform:translateY(-130%); transition:transform .3s ease; z-index:150;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links li{width:100%; border-bottom:1px solid rgba(15,30,54,.06);}
+    .nav-links a{display:block; padding:14px 2px;}
+    .nav-toggle{display:block;}
+    .nav-right .btn-whatsapp span.long{display:none;}
+    .care-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr; gap:36px;}
+    .order-bar{padding:10px 10px 10px 18px; gap:12px;}
+    .order-bar span{font-size:12.5px;}
+    .theme-switcher{left:14px; bottom:96px;}
+    .theme-panel{width:198px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= SVG DEFS (flower symbols + gradients, hidden) ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <linearGradient id="gradRainbow" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" style="stop-color:var(--coral)"/>
+    <stop offset="20%" style="stop-color:var(--amber)"/>
+    <stop offset="40%" style="stop-color:var(--gold)"/>
+    <stop offset="60%" style="stop-color:var(--leaf)"/>
+    <stop offset="80%" style="stop-color:var(--sky)"/>
+    <stop offset="100%" style="stop-color:var(--violet)"/>
+  </linearGradient>
+
+  <!-- Simple drifting petal shape -->
+  <symbol id="petal-shape" viewBox="0 0 40 60">
+    <path d="M20,0 C34,14 34,42 20,60 C6,42 6,14 20,0 Z" fill="var(--petal-color,#F04A22)"/>
+  </symbol>
+
+  <!-- Pipe-cleaner pompom flower -->
+  <symbol id="flower-fluff" viewBox="0 0 120 150">
+    <path d="M60,148 C58,120 70,108 56,86 C46,70 62,64 60,50" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M58,110 C46,104 40,112 30,108" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M62,128 C74,124 78,132 88,130" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="4" stroke-linecap="round"/>
+    <g>
+      <circle cx="60" cy="30" r="15" fill="var(--petal,#F04A22)"/>
+      <circle cx="38" cy="38" r="13" fill="var(--petal,#F04A22)"/>
+      <circle cx="82" cy="38" r="13" fill="var(--petal,#F04A22)"/>
+      <circle cx="30" cy="58" r="12" fill="var(--petal,#F04A22)"/>
+      <circle cx="90" cy="58" r="12" fill="var(--petal,#F04A22)"/>
+      <circle cx="45" cy="66" r="11" fill="var(--petal,#F04A22)"/>
+      <circle cx="75" cy="66" r="11" fill="var(--petal,#F04A22)"/>
+      <circle cx="60" cy="70" r="12" fill="var(--petal,#F04A22)"/>
+      <circle cx="60" cy="48" r="10" fill="var(--center,#0F1E36)"/>
+    </g>
+  </symbol>
+
+  <!-- Wire daisy -->
+  <symbol id="flower-daisy-wire" viewBox="0 0 120 150">
+    <path d="M60,148 C57,118 66,104 58,80" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M59,116 C48,110 42,116 32,112" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="4" stroke-linecap="round"/>
+    <g transform="translate(60,52)">
+      <g fill="var(--petal,#F4B93A)">
+        <ellipse cx="0" cy="-30" rx="9" ry="22"/>
+        <ellipse cx="21" cy="-21" rx="9" ry="22" transform="rotate(45 21 -21)"/>
+        <ellipse cx="30" cy="0" rx="9" ry="22" transform="rotate(90 30 0)"/>
+        <ellipse cx="21" cy="21" rx="9" ry="22" transform="rotate(135 21 21)"/>
+        <ellipse cx="0" cy="30" rx="9" ry="22" transform="rotate(180 0 30)"/>
+        <ellipse cx="-21" cy="21" rx="9" ry="22" transform="rotate(225 -21 21)"/>
+        <ellipse cx="-30" cy="0" rx="9" ry="22" transform="rotate(270 -30 0)"/>
+        <ellipse cx="-21" cy="-21" rx="9" ry="22" transform="rotate(315 -21 -21)"/>
+      </g>
+      <circle cx="0" cy="0" r="13" fill="var(--center,#0F1E36)"/>
+    </g>
+  </symbol>
+
+  <!-- Silk peony -->
+  <symbol id="flower-peony" viewBox="0 0 120 150">
+    <path d="M60,148 C60,120 60,104 60,84" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M60,120 C48,116 44,124 34,122" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M60,132 C71,128 75,134 85,132" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="3.5" stroke-linecap="round"/>
+    <g transform="translate(60,50)">
+      <ellipse cx="0" cy="0" rx="34" ry="26" fill="var(--petal-light, var(--petal,#A968C4))" opacity=".55"/>
+      <ellipse cx="-14" cy="-6" rx="20" ry="15" fill="var(--petal,#A968C4)" transform="rotate(-18 -14 -6)"/>
+      <ellipse cx="14" cy="-6" rx="20" ry="15" fill="var(--petal,#A968C4)" transform="rotate(18 14 -6)"/>
+      <ellipse cx="-12" cy="12" rx="18" ry="14" fill="var(--petal,#A968C4)" transform="rotate(-40 -12 12)"/>
+      <ellipse cx="12" cy="12" rx="18" ry="14" fill="var(--petal,#A968C4)" transform="rotate(40 12 12)"/>
+      <ellipse cx="0" cy="-4" rx="15" ry="12" fill="var(--petal-light, var(--petal,#A968C4))"/>
+      <circle cx="0" cy="2" r="6" fill="var(--center,#0F1E36)"/>
+    </g>
+  </symbol>
+
+  <!-- Orchid spray -->
+  <symbol id="flower-orchid" viewBox="0 0 120 150">
+    <path d="M60,148 C56,116 66,100 56,74" fill="none" stroke="var(--stem, #3EBF3A)" stroke-width="3.5" stroke-linecap="round"/>
+    <g transform="translate(58,54)">
+      <path d="M0,-30 C10,-20 10,-4 0,0 C-10,-4 -10,-20 0,-30 Z" fill="var(--petal,#FCFBF7)" stroke="var(--stem,#3EBF3A)" stroke-width="1.5"/>
+      <path d="M0,-30 C10,-20 10,-4 0,0 C-10,-4 -10,-20 0,-30 Z" fill="var(--petal,#FCFBF7)" stroke="var(--stem,#3EBF3A)" stroke-width="1.5" transform="rotate(72 0 0)"/>
+      <path d="M0,-30 C10,-20 10,-4 0,0 C-10,-4 -10,-20 0,-30 Z" fill="var(--petal,#FCFBF7)" stroke="var(--stem,#3EBF3A)" stroke-width="1.5" transform="rotate(144 0 0)"/>
+      <path d="M0,-30 C10,-20 10,-4 0,0 C-10,-4 -10,-20 0,-30 Z" fill="var(--petal,#FCFBF7)" stroke="var(--stem,#3EBF3A)" stroke-width="1.5" transform="rotate(216 0 0)"/>
+      <path d="M0,-30 C10,-20 10,-4 0,0 C-10,-4 -10,-20 0,-30 Z" fill="var(--petal,#FCFBF7)" stroke="var(--stem,#3EBF3A)" stroke-width="1.5" transform="rotate(288 0 0)"/>
+      <circle cx="0" cy="0" r="7" fill="var(--center,#F4B93A)"/>
+    </g>
+  </symbol>
+  <!-- Decorated gift box (for category / shop icons) -->
+  <symbol id="giftbox-deco" viewBox="0 0 160 160">
+    <ellipse cx="82" cy="142" rx="58" ry="8" fill="#000" opacity=".05"/>
+    <rect x="30" y="80" width="100" height="62" rx="8" fill="var(--box,#F04A22)"/>
+    <rect x="24" y="60" width="112" height="24" rx="6" fill="var(--box,#F04A22)"/>
+    <rect x="72" y="60" width="16" height="82" fill="#FCFBF7"/>
+    <rect x="24" y="66" width="112" height="12" fill="#FCFBF7"/>
+    <path d="M80,58 C68,42 46,44 50,58 C54,68 72,64 80,58 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+    <path d="M80,58 C92,42 114,44 110,58 C106,68 88,64 80,58 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+    <circle cx="80" cy="58" r="7" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+    <circle cx="46" cy="66" r="8" fill="#8B5A2B"/>
+    <circle cx="60" cy="60" r="7" fill="#5C3A1E"/>
+    <g transform="translate(120,50) scale(.55)">
+      <path d="M60,148 C57,118 66,104 58,80" fill="none" stroke="#3EBF3A" stroke-width="4.5" stroke-linecap="round"/>
+      <g transform="translate(60,52)">
+        <g fill="var(--petal,#F4B93A)">
+          <ellipse cx="0" cy="-30" rx="9" ry="22"/>
+          <ellipse cx="21" cy="-21" rx="9" ry="22" transform="rotate(45 21 -21)"/>
+          <ellipse cx="30" cy="0" rx="9" ry="22" transform="rotate(90 30 0)"/>
+          <ellipse cx="21" cy="21" rx="9" ry="22" transform="rotate(135 21 21)"/>
+          <ellipse cx="0" cy="30" rx="9" ry="22" transform="rotate(180 0 30)"/>
+          <ellipse cx="-21" cy="21" rx="9" ry="22" transform="rotate(225 -21 21)"/>
+          <ellipse cx="-30" cy="0" rx="9" ry="22" transform="rotate(270 -30 0)"/>
+          <ellipse cx="-21" cy="-21" rx="9" ry="22" transform="rotate(315 -21 -21)"/>
+        </g>
+        <circle cx="0" cy="0" r="13" fill="var(--ink,#0F1E36)"/>
+      </g>
+    </g>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header id="siteHeader">
+  <div class="scroll-rail" aria-hidden="true">
+    <div class="scroll-rail-fill" id="scrollRailFill">
+      <svg class="scroll-rail-flower" viewBox="0 0 120 150" style="--petal:var(--coral); --center:var(--ink); --stem:var(--leaf);"><use href="#flower-fluff"/></svg>
+    </div>
+  </div>
+  <nav>
+    <a href="#top" class="brand">
+      <img src="rainboweyes-logo-icon.jpg" alt="RainbowEyes icon">
+      <span class="brand-word">RainbowEyes</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#customize">Design Yours</a></li>
+      <li><a href="#stationery-customize">School Gift Box</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#how-to-order">How to Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#shop" class="btn btn-whatsapp btn-sm"><span class="long">Order on</span> WhatsApp</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Handmade to order</div>
+        <h1>Blooms that never wilt,<br><span class="hl">stories</span> that never fade.</h1>
+        <p class="lead">Flowers twisted from pipe cleaners and shaped from silk — each one made by hand, one bloom, one loop, one petal at a time. No stems from a warehouse. No two bunches quite alike.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-primary">Shop the collection</a>
+          <a href="#story" class="btn btn-outline">Our story</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item"><span class="trust-dot" style="background:var(--coral)"></span>Made to order</div>
+          <div class="trust-item"><span class="trust-dot" style="background:var(--gold)"></span>Custom colours</div>
+          <div class="trust-item"><span class="trust-dot" style="background:var(--sky)"></span>Island-wide delivery</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="halo"></div>
+        <img src="rainboweyes-logo.jpg" alt="RainbowEyes logo — a rainbow eyelash eye illustration">
+        <svg class="hero-flower f1" viewBox="0 0 120 150" style="--petal:var(--sky); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+        <svg class="hero-flower f2" viewBox="0 0 120 150" style="--petal:var(--violet); --petal-light:#E9D9F1; --stem:var(--leaf);"><use href="#flower-peony"/></svg>
+        <svg class="hero-flower f3" viewBox="0 0 120 150" style="--petal:var(--coral); --center:var(--ink);"><use href="#flower-fluff"/></svg>
+        <svg class="hero-flower f4" viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--coral); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+        <svg class="hero-flower f5" viewBox="0 0 120 150" style="--petal:#FCFBF7; --center:var(--gold); --stem:var(--leaf);"><use href="#flower-orchid"/></svg>
+      </div>
+    </div>
+
+    <!-- Ambient drifting petals -->
+    <div class="petal-field" aria-hidden="true">
+      <svg class="petal" style="--x:4%;  --size:16px; --duration:15s; --delay:-2s;  --drift:34px;"  viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--coral)"/></svg>
+      <svg class="petal" style="--x:14%; --size:12px; --duration:12s; --delay:-6s;  --drift:-22px;" viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--gold)"/></svg>
+      <svg class="petal" style="--x:24%; --size:20px; --duration:18s; --delay:-9s;  --drift:28px;"  viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--sky)"/></svg>
+      <svg class="petal" style="--x:36%; --size:14px; --duration:14s; --delay:-3s;  --drift:-30px;" viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--violet)"/></svg>
+      <svg class="petal" style="--x:48%; --size:18px; --duration:16s; --delay:-11s; --drift:24px;"  viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--leaf)"/></svg>
+      <svg class="petal" style="--x:58%; --size:13px; --duration:13s; --delay:-4s;  --drift:-18px;" viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--amber)"/></svg>
+      <svg class="petal" style="--x:68%; --size:19px; --duration:17s; --delay:-8s;  --drift:32px;"  viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--coral)"/></svg>
+      <svg class="petal" style="--x:78%; --size:15px; --duration:15s; --delay:-1s;  --drift:-26px;" viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--sky)"/></svg>
+      <svg class="petal" style="--x:88%; --size:17px; --duration:19s; --delay:-13s; --drift:20px;"  viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--gold)"/></svg>
+      <svg class="petal" style="--x:94%; --size:11px; --duration:12.5s; --delay:-5s; --drift:-16px;" viewBox="0 0 40 60"><use href="#petal-shape" style="--petal-color:var(--violet)"/></svg>
+    </div>
+
+    <a href="#categories" class="scroll-cue" aria-label="Scroll to explore">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 13l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M0,32 C50,8 100,56 150,32 C200,8 250,56 300,32 C350,8 400,56 450,32 C500,8 550,56 600,32 C650,8 700,56 750,32 C800,8 850,56 900,32 C950,8 1000,56 1050,32 C1090,16 1150,42 1200,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(1160,26)"><g class="wire-flower"><use href="#flower-fluff" x="-23" y="-27" width="46" height="58" style="--petal:var(--gold); --center:var(--coral);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= CATEGORIES ================= -->
+  <section id="categories">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Three ways to give</div>
+        <h2>Pick your petal — or build a whole gift.</h2>
+        <p>Every RainbowEyes creation falls into one of three families — playful and hand-twisted, elegant and true-to-life, or a full gift box built around them. All made by hand, to order.</p>
+      </div>
+      <div class="categories-grid categories-grid-3">
+        <div class="cat-card warm reveal">
+          <span class="cat-tag">Pipe Cleaner Flowers</span>
+          <h3>Chenille Blooms</h3>
+          <p>Fuzzy, colour-saturated flowers bent one loop at a time from chenille stems. Cheerful, tactile, and endlessly customisable.</p>
+          <a href="#shop" class="btn btn-primary btn-sm" data-filter-link="pipe">Browse pipe cleaner flowers</a>
+          <div class="cat-icons">
+            <svg viewBox="0 0 120 150" style="--petal:var(--coral); --center:var(--ink);"><use href="#flower-fluff"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--coral); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+          </div>
+        </div>
+        <div class="cat-card cool reveal">
+          <span class="cat-tag">Artificial Flowers</span>
+          <h3>Silk &amp; Fabric Blooms</h3>
+          <p>Petals shaped to hold their form, season after season. Soft to the touch, true-to-life colour, and zero watering.</p>
+          <a href="#shop" class="btn btn-primary btn-sm" data-filter-link="artificial">Browse artificial flowers</a>
+          <div class="cat-icons">
+            <svg viewBox="0 0 120 150" style="--petal:var(--violet); --petal-light:#E9D9F1;"><use href="#flower-peony"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:#FCFBF7; --center:var(--gold); --stem:var(--leaf);"><use href="#flower-orchid"/></svg>
+          </div>
+        </div>
+        <div class="cat-card sweet reveal">
+          <span class="cat-tag">Gift Boxes</span>
+          <h3>Chocolates, Toys &amp; Blooms</h3>
+          <p>A box built around what they love — chocolates, a soft toy, a flower sprig, ribbon and a card. You choose what goes in.</p>
+          <a href="#giftbox-customize" class="btn btn-primary btn-sm">Build a gift box</a>
+          <div class="cat-icons">
+            <svg viewBox="0 0 160 160" style="--box:var(--coral); --petal:var(--gold);"><use href="#giftbox-deco"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M0,32 C50,8 100,56 150,32 C200,8 250,56 300,32 C350,8 400,56 450,32 C500,8 550,56 600,32 C650,8 700,56 750,32 C800,8 850,56 900,32 C950,8 1000,56 1050,32 C1090,16 1150,42 1200,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(1160,26)"><g class="wire-flower"><use href="#flower-peony" x="-23" y="-27" width="46" height="58" style="--petal:var(--sky); --petal-light:var(--sky);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= CUSTOMIZER ================= -->
+  <section id="customize">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Made just for you</div>
+        <h2>Design your own bouquet</h2>
+        <p>Pick a style, a colour, and how many stems — watch it come together live, then send it straight to us on WhatsApp.</p>
+      </div>
+
+      <div class="customizer reveal">
+        <div class="customizer-preview">
+          <div class="customizer-preview-halo"></div>
+          <svg class="preview-flower" id="previewFlower" viewBox="0 0 120 150" style="--petal:var(--coral); --center:var(--ink); --stem:var(--leaf);">
+            <use id="previewUse" href="#flower-fluff"/>
+          </svg>
+          <div class="preview-caption"><span id="previewColorLabel">Coral</span> · <span id="previewTypeLabel">Pipe Cleaner</span></div>
+        </div>
+
+        <div class="customizer-controls">
+          <div class="control-group">
+            <span class="control-label">1. Choose a style</span>
+            <div class="pill-toggle" id="typeToggle">
+              <button class="pill-btn active" data-type="pipe" type="button">Pipe Cleaner</button>
+              <button class="pill-btn" data-type="artificial" type="button">Artificial</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">2. Choose a shape</span>
+            <div class="shape-toggle" id="shapeToggle">
+              <button class="shape-btn active" data-shape="flower-fluff" data-for="pipe" type="button">
+                <svg viewBox="0 0 120 150" aria-hidden="true"><use href="#flower-fluff"/></svg>Pompom
+              </button>
+              <button class="shape-btn" data-shape="flower-daisy-wire" data-for="pipe" type="button">
+                <svg viewBox="0 0 120 150" aria-hidden="true"><use href="#flower-daisy-wire"/></svg>Daisy
+              </button>
+              <button class="shape-btn" data-shape="flower-peony" data-for="artificial" type="button">
+                <svg viewBox="0 0 120 150" aria-hidden="true"><use href="#flower-peony"/></svg>Peony
+              </button>
+              <button class="shape-btn" data-shape="flower-orchid" data-for="artificial" type="button">
+                <svg viewBox="0 0 120 150" aria-hidden="true"><use href="#flower-orchid"/></svg>Orchid
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">3. Choose a colour</span>
+            <div class="swatch-row" id="colorSwatches">
+              <button class="swatch active" data-color="var(--coral)" data-label="Coral" style="--sw:var(--coral)" aria-label="Coral" type="button"></button>
+              <button class="swatch" data-color="var(--amber)" data-label="Amber" style="--sw:var(--amber)" aria-label="Amber" type="button"></button>
+              <button class="swatch" data-color="var(--gold)" data-label="Gold" style="--sw:var(--gold)" aria-label="Gold" type="button"></button>
+              <button class="swatch" data-color="var(--leaf)" data-label="Leaf Green" style="--sw:var(--leaf)" aria-label="Leaf Green" type="button"></button>
+              <button class="swatch" data-color="var(--sky)" data-label="Sky Blue" style="--sw:var(--sky)" aria-label="Sky Blue" type="button"></button>
+              <button class="swatch" data-color="var(--violet)" data-label="Violet" style="--sw:var(--violet)" aria-label="Violet" type="button"></button>
+              <button class="swatch" data-color="#FCFBF7" data-label="Ivory White" style="--sw:#FCFBF7" aria-label="Ivory White" type="button"></button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">4. How many stems?</span>
+            <div class="qty-stepper">
+              <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity" type="button">−</button>
+              <span id="qtyValue">3</span>
+              <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity" type="button">+</button>
+            </div>
+          </div>
+
+          <div class="customizer-footer">
+            <div class="customizer-price"><span>Estimated</span><strong id="customPrice">LKR 660</strong></div>
+            <button class="btn btn-primary" id="addCustomBtn" type="button">Add my bouquet to order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M0,32 C50,8 100,56 150,32 C200,8 250,56 300,32 C350,8 400,56 450,32 C500,8 550,56 600,32 C650,8 700,56 750,32 C800,8 850,56 900,32 C950,8 1000,56 1050,32 C1090,16 1150,42 1200,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(1160,26)"><g class="wire-flower"><use href="#flower-daisy-wire" x="-23" y="-27" width="46" height="58" style="--petal:var(--amber); --center:var(--ink);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= GIFT BOX CUSTOMIZER ================= -->
+  <section id="giftbox-customize">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Made just for you</div>
+        <h2>Design your own gift box</h2>
+        <p>Pick a box, pick what goes inside — chocolates, a soft toy, a flower sprig, a card — and watch it fill up live.</p>
+      </div>
+
+      <div class="customizer reveal">
+        <div class="customizer-preview giftbox-preview">
+          <div class="customizer-preview-halo"></div>
+          <svg class="preview-giftbox" id="previewGiftbox" viewBox="0 0 240 240" style="--box:var(--coral);">
+            <ellipse cx="115" cy="222" rx="80" ry="9" fill="#000" opacity=".05"/>
+            <rect x="50" y="130" width="110" height="80" rx="10" fill="var(--box)"/>
+            <rect x="42" y="108" width="126" height="26" rx="8" fill="var(--box)"/>
+            <rect x="98" y="108" width="14" height="102" fill="#FCFBF7"/>
+            <rect x="42" y="114" width="126" height="12" fill="#FCFBF7"/>
+            <path d="M105,106 C93,90 71,92 75,106 C79,116 97,112 105,106 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+            <path d="M105,106 C117,90 139,92 135,106 C131,116 113,112 105,106 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+            <circle cx="105" cy="106" r="7" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+
+            <g id="previewGiftChoc" class="gift-layer hidden">
+              <circle cx="65" cy="108" r="9" fill="var(--choc1,#8B5A2B)"/>
+              <circle cx="80" cy="99" r="8" fill="var(--choc2,#8B5A2B)"/>
+              <circle cx="92" cy="107" r="7" fill="var(--choc3,#8B5A2B)"/>
+            </g>
+
+            <g transform="translate(38,60)">
+              <g id="previewGiftFlower" class="gift-layer hidden">
+                <path d="M22,90 C18,66 26,54 20,40" fill="none" stroke="var(--leaf)" stroke-width="3.5" stroke-linecap="round"/>
+                <g transform="translate(20,20)" fill="var(--gold)">
+                  <ellipse cx="0" cy="-16" rx="6" ry="13"/>
+                  <ellipse cx="11" cy="-11" rx="6" ry="13" transform="rotate(45 11 -11)"/>
+                  <ellipse cx="16" cy="0" rx="6" ry="13" transform="rotate(90 16 0)"/>
+                  <ellipse cx="11" cy="11" rx="6" ry="13" transform="rotate(135 11 11)"/>
+                  <ellipse cx="0" cy="16" rx="6" ry="13" transform="rotate(180 0 16)"/>
+                  <ellipse cx="-11" cy="11" rx="6" ry="13" transform="rotate(225 -11 11)"/>
+                  <ellipse cx="-16" cy="0" rx="6" ry="13" transform="rotate(270 -16 0)"/>
+                  <ellipse cx="-11" cy="-11" rx="6" ry="13" transform="rotate(315 -11 -11)"/>
+                </g>
+                <circle cx="20" cy="20" r="7" fill="var(--ink)"/>
+              </g>
+            </g>
+
+            <g transform="translate(14,168) rotate(-8)">
+              <g id="previewGiftCard" class="gift-layer hidden">
+                <rect x="0" y="0" width="36" height="26" rx="3" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+                <path d="M6,7 L18,16 L30,7" fill="none" stroke="var(--coral)" stroke-width="1.8"/>
+              </g>
+            </g>
+
+            <g id="previewGiftConfetti" class="gift-layer hidden">
+              <rect x="60" y="70" width="7" height="7" rx="1.5" fill="var(--coral)" transform="rotate(20 63 73)"/>
+              <circle cx="90" cy="58" r="4" fill="var(--sky)"/>
+              <rect x="115" y="72" width="6" height="6" rx="1.5" fill="var(--gold)" transform="rotate(-15 118 75)"/>
+              <circle cx="140" cy="60" r="4" fill="var(--violet)"/>
+              <rect x="150" y="80" width="6" height="6" rx="1.5" fill="var(--leaf)" transform="rotate(30 153 83)"/>
+              <circle cx="75" cy="48" r="3.5" fill="var(--amber)"/>
+            </g>
+
+            <g id="previewGiftToy" class="gift-layer hidden">
+              <g id="previewGiftToyTeddy">
+                <ellipse cx="196" cy="196" rx="28" ry="26" fill="#C89B6B"/>
+                <circle cx="196" cy="150" r="24" fill="#C89B6B"/>
+                <circle cx="178" cy="130" r="10" fill="#C89B6B"/>
+                <circle cx="214" cy="130" r="10" fill="#C89B6B"/>
+                <circle cx="178" cy="130" r="5" fill="#8B5A2B"/>
+                <circle cx="214" cy="130" r="5" fill="#8B5A2B"/>
+                <circle cx="188" cy="147" r="2.6" fill="var(--ink)"/>
+                <circle cx="204" cy="147" r="2.6" fill="var(--ink)"/>
+                <ellipse cx="196" cy="156" rx="5" ry="4" fill="#8B5A2B"/>
+                <ellipse cx="170" cy="192" rx="9" ry="16" fill="#C89B6B" transform="rotate(-18 170 192)"/>
+                <ellipse cx="222" cy="192" rx="9" ry="16" fill="#C89B6B" transform="rotate(18 222 192)"/>
+              </g>
+              <g id="previewGiftToyBunny" class="hidden">
+                <ellipse cx="196" cy="196" rx="26" ry="24" fill="#F3E4E1"/>
+                <circle cx="196" cy="152" r="21" fill="#F3E4E1"/>
+                <ellipse cx="184" cy="118" rx="8" ry="22" fill="#F3E4E1"/>
+                <ellipse cx="208" cy="118" rx="8" ry="22" fill="#F3E4E1"/>
+                <ellipse cx="184" cy="118" rx="4" ry="14" fill="#E7B9C4"/>
+                <ellipse cx="208" cy="118" rx="4" ry="14" fill="#E7B9C4"/>
+                <circle cx="189" cy="150" r="2.4" fill="var(--ink)"/>
+                <circle cx="203" cy="150" r="2.4" fill="var(--ink)"/>
+                <ellipse cx="196" cy="158" rx="4" ry="3" fill="#E7B9C4"/>
+                <ellipse cx="172" cy="192" rx="8" ry="15" fill="#F3E4E1" transform="rotate(-18 172 192)"/>
+                <ellipse cx="220" cy="192" rx="8" ry="15" fill="#F3E4E1" transform="rotate(18 220 192)"/>
+              </g>
+            </g>
+          </svg>
+          <div class="preview-caption" id="giftPreviewCaption">Small · Coral box</div>
+        </div>
+
+        <div class="customizer-controls">
+          <div class="control-group">
+            <span class="control-label">1. Choose a box size</span>
+            <div class="pill-toggle" id="giftSizeToggle">
+              <button class="pill-btn active" data-size="small" data-price="650" type="button">Small</button>
+              <button class="pill-btn" data-size="medium" data-price="950" type="button">Medium</button>
+              <button class="pill-btn" data-size="large" data-price="1400" type="button">Large</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">2. Choose a box colour</span>
+            <div class="swatch-row" id="giftColorSwatches">
+              <button class="swatch active" data-color="var(--coral)" data-label="Coral" style="--sw:var(--coral)" aria-label="Coral" type="button"></button>
+              <button class="swatch" data-color="var(--sky)" data-label="Sky Blue" style="--sw:var(--sky)" aria-label="Sky Blue" type="button"></button>
+              <button class="swatch" data-color="var(--violet)" data-label="Violet" style="--sw:var(--violet)" aria-label="Violet" type="button"></button>
+              <button class="swatch" data-color="var(--gold)" data-label="Gold" style="--sw:var(--gold)" aria-label="Gold" type="button"></button>
+              <button class="swatch" data-color="#C89B6B" data-label="Kraft Brown" style="--sw:#C89B6B" aria-label="Kraft Brown" type="button"></button>
+              <button class="swatch" data-color="#FCFBF7" data-label="Ivory White" style="--sw:#FCFBF7" aria-label="Ivory White" type="button"></button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">3. What's inside?</span>
+            <div class="addon-list" id="addonList">
+              <div class="addon-row">
+                <button class="chip" data-addon="chocolate" data-price="300" type="button">🍫 Chocolates<span class="chip-price">+LKR 300</span></button>
+                <div class="sub-pill" data-for="chocolate">
+                  <button class="sub-pill-btn active" data-sub="milk" data-price="300" type="button">Milk</button>
+                  <button class="sub-pill-btn" data-sub="dark" data-price="320" type="button">Dark</button>
+                  <button class="sub-pill-btn" data-sub="assorted" data-price="380" type="button">Assorted</button>
+                </div>
+              </div>
+              <div class="addon-row">
+                <button class="chip" data-addon="toy" data-price="450" type="button">🧸 Soft Toy<span class="chip-price">+LKR 450</span></button>
+                <div class="sub-pill" data-for="toy">
+                  <button class="sub-pill-btn active" data-sub="teddy" data-price="450" type="button">Teddy</button>
+                  <button class="sub-pill-btn" data-sub="bunny" data-price="420" type="button">Bunny</button>
+                </div>
+              </div>
+              <div class="addon-row">
+                <button class="chip" data-addon="flower" data-price="350" type="button">🌸 Flower Sprig<span class="chip-price">+LKR 350</span></button>
+              </div>
+              <div class="addon-row">
+                <button class="chip" data-addon="card" data-price="100" type="button">💌 Greeting Card<span class="chip-price">+LKR 100</span></button>
+              </div>
+              <div class="addon-row">
+                <button class="chip" data-addon="confetti" data-price="80" type="button">🎉 Confetti Sprinkles<span class="chip-price">+LKR 80</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="customizer-footer">
+            <div class="customizer-price"><span>Estimated</span><strong id="giftPrice">LKR 650</strong></div>
+            <button class="btn btn-primary" id="addGiftBtn" type="button">Add my gift box to order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M1200,32 C1150,8 1100,56 1050,32 C1000,8 950,56 900,32 C850,8 800,56 750,32 C700,8 650,56 600,32 C550,8 500,56 450,32 C400,8 350,56 300,32 C250,8 200,56 150,32 C110,16 50,42 0,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(40,26)"><g class="wire-flower"><use href="#flower-fluff" x="-23" y="-27" width="46" height="58" style="--petal:var(--gold); --center:var(--ink);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= STATIONERY GIFT BOX CUSTOMIZER ================= -->
+  <section id="stationery-customize">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Back to school</div>
+        <h2>Build a stationery gift box</h2>
+        <p>Pick a box, pick a colour, then choose which little treats go inside — clay, pencils, file covers, erasers and more. Watch it fill up live, then send it to us on WhatsApp.</p>
+      </div>
+
+      <div class="customizer reveal">
+        <div class="customizer-preview giftbox-preview">
+          <div class="customizer-preview-halo"></div>
+          <div class="giftbox-stage">
+            <svg class="preview-giftbox" id="previewStatBox" viewBox="0 0 240 240" style="--box:var(--coral);">
+              <ellipse cx="115" cy="222" rx="80" ry="9" fill="#000" opacity=".05"/>
+              <rect x="50" y="130" width="110" height="80" rx="10" fill="var(--box)"/>
+              <rect x="42" y="108" width="126" height="26" rx="8" fill="var(--box)"/>
+              <rect x="98" y="108" width="14" height="102" fill="#FCFBF7"/>
+              <rect x="42" y="114" width="126" height="12" fill="#FCFBF7"/>
+              <path d="M105,106 C93,90 71,92 75,106 C79,116 97,112 105,106 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+              <path d="M105,106 C117,90 139,92 135,106 C131,116 113,112 105,106 Z" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+              <circle cx="105" cy="106" r="7" fill="#FCFBF7" stroke="var(--ink-faint,#8A93A6)" stroke-width="1.5"/>
+            </svg>
+            <div class="box-contents" id="statBoxContents" aria-hidden="true">
+              <div class="content-thumb" data-item="clay"><img src="Images/product-clay.jpg" alt="Modelling clay"></div>
+              <div class="content-thumb" data-item="pencils"><img src="Images/product-colour-pencils.jpg" alt="Colour pencils"></div>
+              <div class="content-thumb" data-item="filebox"><img src="Images/product-filecover-box.jpg" alt="Box type file cover"></div>
+              <div class="content-thumb" data-item="fileunicorn"><img src="Images/product-filecover-unicorn.jpg" alt="Unicorn file cover"></div>
+              <div class="content-thumb" data-item="eraser"><img src="Images/product-food-eraser.jpg" alt="Food eraser set"></div>
+              <div class="content-thumb" data-item="pad"><img src="Images/product-writing-pad.jpg" alt="Drawing pad with puzzle"></div>
+              <div class="content-thumb" data-item="geometry"><img src="Images/product-geometry-set.jpg" alt="Geometry set"></div>
+            </div>
+          </div>
+          <div class="preview-caption" id="statPreviewCaption">Small · Coral box · empty</div>
+        </div>
+
+        <div class="customizer-controls">
+          <div class="control-group">
+            <span class="control-label">1. Choose a box size</span>
+            <div class="pill-toggle" id="statSizeToggle">
+              <button class="pill-btn active" data-size="small" data-price="300" type="button">Small</button>
+              <button class="pill-btn" data-size="medium" data-price="450" type="button">Medium</button>
+              <button class="pill-btn" data-size="large" data-price="600" type="button">Large</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">2. Choose a box colour</span>
+            <div class="swatch-row" id="statColorSwatches">
+              <button class="swatch active" data-color="var(--coral)" data-label="Coral" style="--sw:var(--coral)" aria-label="Coral" type="button"></button>
+              <button class="swatch" data-color="var(--sky)" data-label="Sky Blue" style="--sw:var(--sky)" aria-label="Sky Blue" type="button"></button>
+              <button class="swatch" data-color="var(--violet)" data-label="Violet" style="--sw:var(--violet)" aria-label="Violet" type="button"></button>
+              <button class="swatch" data-color="var(--gold)" data-label="Gold" style="--sw:var(--gold)" aria-label="Gold" type="button"></button>
+              <button class="swatch" data-color="var(--leaf)" data-label="Leaf Green" style="--sw:var(--leaf)" aria-label="Leaf Green" type="button"></button>
+              <button class="swatch" data-color="#FCFBF7" data-label="Ivory White" style="--sw:#FCFBF7" aria-label="Ivory White" type="button"></button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">3. What's inside?</span>
+            <div class="addon-list item-list" id="statItemList">
+              <button class="chip item-chip active" data-item="clay" data-price="150" type="button">
+                <span class="chip-thumb"><img src="Images/product-clay.jpg" alt=""></span>
+                <span class="chip-label">Modelling Clay (6 Colours)</span>
+                <span class="chip-price">+LKR 150</span>
+              </button>
+              <button class="chip item-chip" data-item="pencils" data-price="400" type="button">
+                <span class="chip-thumb"><img src="Images/product-colour-pencils.jpg" alt=""></span>
+                <span class="chip-label">Colour Pencil Set</span>
+                <span class="chip-price">+LKR 400</span>
+              </button>
+              <button class="chip item-chip" data-item="filebox" data-price="500" type="button">
+                <span class="chip-thumb"><img src="Images/product-filecover-box.jpg" alt=""></span>
+                <span class="chip-label">Box Type File Cover</span>
+                <span class="chip-price">+LKR 500</span>
+              </button>
+              <button class="chip item-chip" data-item="fileunicorn" data-price="400" type="button">
+                <span class="chip-thumb"><img src="Images/product-filecover-unicorn.jpg" alt=""></span>
+                <span class="chip-label">Unicorn File Cover</span>
+                <span class="chip-price">+LKR 400</span>
+              </button>
+              <button class="chip item-chip" data-item="eraser" data-price="60" type="button">
+                <span class="chip-thumb"><img src="Images/product-food-eraser.jpg" alt=""></span>
+                <span class="chip-label">Food Eraser Set</span>
+                <span class="chip-price">+LKR 60</span>
+              </button>
+              <button class="chip item-chip" data-item="pad" data-price="300" type="button">
+                <span class="chip-thumb"><img src="Images/product-writing-pad.jpg" alt=""></span>
+                <span class="chip-label">Drawing Pad with Puzzle</span>
+                <span class="chip-price">+LKR 300</span>
+              </button>
+              <button class="chip item-chip" data-item="geometry" data-price="200" type="button">
+                <span class="chip-thumb"><img src="Images/product-geometry-set.jpg" alt=""></span>
+                <span class="chip-label">Compass, Set Squares &amp; Ruler Pack</span>
+                <span class="chip-price">+LKR 200</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="customizer-footer">
+            <div class="customizer-price"><span>Estimated</span><strong id="statPrice">LKR 450</strong></div>
+            <button class="btn btn-primary" id="addStatBtn" type="button">Add my gift box to order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M0,32 C50,8 100,56 150,32 C200,8 250,56 300,32 C350,8 400,56 450,32 C500,8 550,56 600,32 C650,8 700,56 750,32 C800,8 850,56 900,32 C950,8 1000,56 1050,32 C1090,16 1150,42 1200,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(1160,26)"><g class="wire-flower"><use href="#flower-daisy-wire" x="-23" y="-27" width="46" height="58" style="--petal:var(--leaf); --center:var(--ink);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= SHOP ================= -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="shop-head reveal">
+        <div>
+          <div class="eyebrow">The shop</div>
+          <h2>A few of our favourites</h2>
+        </div>
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-filter="all">All items</button>
+          <button class="filter-btn" data-filter="pipe">Pipe cleaner</button>
+          <button class="filter-btn" data-filter="artificial">Artificial</button>
+          <button class="filter-btn" data-filter="gifts">Gift boxes</button>
+          <button class="filter-btn" data-filter="stationery">Stationery</button>
+        </div>
+      </div>
+
+      <div class="shop-grid reveal" id="shopGrid">
+
+        <article class="product-card" data-category="pipe">
+          <div class="product-visual">
+            <span class="badge">Customisable</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--coral); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Chenille Bloom</span>
+            <h4>Sunshine Daisy Bunch</h4>
+            <p class="product-desc">Five cheerful wire daisies bundled together — bright, simple, and ready to brighten a desk or a doorway.</p>
+            <div class="product-footer">
+              <span class="price">LKR 450</span>
+              <button class="order-btn" data-id="p1" data-name="Sunshine Daisy Bunch" data-price="LKR 450">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="pipe">
+          <div class="product-visual" style="position:relative;">
+            <span class="badge">Made to order</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--coral); --center:var(--ink); position:absolute; left:24px; width:64px;"><use href="#flower-fluff"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:var(--sky); --center:var(--ink); width:78px;"><use href="#flower-fluff"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--ink); position:absolute; right:20px; width:60px;"><use href="#flower-fluff"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Chenille Bloom</span>
+            <h4>Rainbow Pom Bouquet</h4>
+            <p class="product-desc">Our most colourful bunch — a full spectrum of pompom blooms twisted into one bouquet. Say it with every colour at once.</p>
+            <div class="product-footer">
+              <span class="price">LKR 1,200</span>
+              <button class="order-btn" data-id="p2" data-name="Rainbow Pom Bouquet" data-price="LKR 1,200">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="pipe">
+          <div class="product-visual">
+            <span class="badge">Best for gifting</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--violet); --center:var(--ink); --stem:var(--leaf);"><use href="#flower-fluff"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Chenille Bloom</span>
+            <h4>Petite Chenille Rose Stem</h4>
+            <p class="product-desc">A single soft-textured rose on a bendable wire stem. Slip it into a card, a bag, or a mug — it holds its shape anywhere.</p>
+            <div class="product-footer">
+              <span class="price">LKR 250</span>
+              <button class="order-btn" data-id="p3" data-name="Petite Chenille Rose Stem" data-price="LKR 250">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="pipe">
+          <div class="product-visual">
+            <span class="badge">Mixed colours</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--sky); --center:var(--amber); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Chenille Bloom</span>
+            <h4>Wildflower Wire Bunch</h4>
+            <p class="product-desc">A loose, meadow-style mix of wire blooms in assorted colours — no two bunches twisted quite the same.</p>
+            <div class="product-footer">
+              <span class="price">LKR 950</span>
+              <button class="order-btn" data-id="p4" data-name="Wildflower Wire Bunch" data-price="LKR 950">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="artificial">
+          <div class="product-visual">
+            <span class="badge">Customisable</span>
+            <svg viewBox="0 0 120 150" style="--petal:#F3B9AE; --petal-light:#FCE3DD; --center:var(--coral);"><use href="#flower-peony"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Silk Bloom</span>
+            <h4>Blush Peony Stem</h4>
+            <p class="product-desc">Layered petals in a soft blush tone that hold their fullness for good. A quiet, elegant accent for any corner.</p>
+            <div class="product-footer">
+              <span class="price">LKR 650</span>
+              <button class="order-btn" data-id="p5" data-name="Blush Peony Stem" data-price="LKR 650">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="artificial">
+          <div class="product-visual">
+            <span class="badge">Best for gifting</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--violet); --petal-light:#E9D9F1; --center:var(--gold);"><use href="#flower-peony"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Silk Bloom</span>
+            <h4>Lavender Silk Rose Bouquet</h4>
+            <p class="product-desc">A full bouquet of lavender-toned silk roses, arranged and ready to gift — no vase required, no watering, ever.</p>
+            <div class="product-footer">
+              <span class="price">LKR 1,800</span>
+              <button class="order-btn" data-id="p6" data-name="Lavender Silk Rose Bouquet" data-price="LKR 1,800">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="artificial">
+          <div class="product-visual">
+            <span class="badge">Made to order</span>
+            <svg viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--ink); --stem:var(--leaf);"><use href="#flower-daisy-wire"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Silk Bloom</span>
+            <h4>Sunflower Accent Stem</h4>
+            <p class="product-desc">A single bold sunflower stem in true-to-life fabric — an easy pop of warmth for a shelf or a windowsill.</p>
+            <div class="product-footer">
+              <span class="price">LKR 400</span>
+              <button class="order-btn" data-id="p7" data-name="Sunflower Accent Stem" data-price="LKR 400">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="artificial">
+          <div class="product-visual">
+            <span class="badge">For events</span>
+            <svg viewBox="0 0 120 150" style="--petal:#FCFBF7; --center:var(--gold); --stem:var(--leaf);"><use href="#flower-orchid"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Silk Bloom</span>
+            <h4>Wedding White Orchid Spray</h4>
+            <p class="product-desc">Elegant white orchid stems for centrepieces, bouquets, and décor that needs to stay picture-perfect all day.</p>
+            <div class="product-footer">
+              <span class="price">LKR 2,200</span>
+              <button class="order-btn" data-id="p8" data-name="Wedding White Orchid Spray" data-price="LKR 2,200">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="gifts">
+          <div class="product-visual">
+            <span class="badge">Bestseller pick</span>
+            <svg viewBox="0 0 160 160" style="--box:var(--coral); --petal:var(--gold);"><use href="#giftbox-deco"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Gift Box</span>
+            <h4>Sweetheart Chocolate Box</h4>
+            <p class="product-desc">A coral gift box with an assortment of milk and dark chocolates, ribbon-tied with a mini flower sprig tucked in.</p>
+            <div class="product-footer">
+              <span class="price">LKR 1,450</span>
+              <button class="order-btn" data-id="p9" data-name="Sweetheart Chocolate Box" data-price="LKR 1,450">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="gifts">
+          <div class="product-visual">
+            <span class="badge">Best for gifting</span>
+            <svg viewBox="0 0 160 160" style="--box:var(--sky); --petal:var(--violet);"><use href="#giftbox-deco"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Gift Box</span>
+            <h4>Teddy &amp; Bloom Gift Set</h4>
+            <p class="product-desc">A soft teddy bear and a chenille flower sprig, boxed together in sky blue with ribbon and a handwritten card.</p>
+            <div class="product-footer">
+              <span class="price">LKR 1,950</span>
+              <button class="order-btn" data-id="p10" data-name="Teddy &amp; Bloom Gift Set" data-price="LKR 1,950">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="gifts">
+          <div class="product-visual">
+            <span class="badge">Customisable</span>
+            <svg viewBox="0 0 160 160" style="--box:var(--gold); --petal:var(--coral);"><use href="#giftbox-deco"/></svg>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Gift Box</span>
+            <h4>Celebration Confetti Box</h4>
+            <p class="product-desc">A gold box full of confetti sprinkles and a greeting card — a light, playful pick for birthdays and good news.</p>
+            <div class="product-footer">
+              <span class="price">LKR 1,200</span>
+              <button class="order-btn" data-id="p11" data-name="Celebration Confetti Box" data-price="LKR 1,200">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">Kids favourite</span>
+            <img src="Images/product-clay.jpg" alt="Kiddy Clay modelling clay, 6 colours" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Modelling Clay (6 Colours)</h4>
+            <p class="product-desc">Super-soft, non-toxic modelling clay in six bright colours — gluten-free and easy for little hands to shape.</p>
+            <div class="product-footer">
+              <span class="price">LKR 150</span>
+              <button class="order-btn" data-id="p12" data-name="Modelling Clay (6 Colours)" data-price="LKR 150">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">Bi-colour</span>
+            <img src="Images/product-colour-pencils.jpg" alt="Colour Sparx bi-colour pencil set" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Colour Pencil Set</h4>
+            <p class="product-desc">A bi-colour pencil set packed with bright, blendable shades — great for colouring, sketching and school projects.</p>
+            <div class="product-footer">
+              <span class="price">LKR 400</span>
+              <button class="order-btn" data-id="p13" data-name="Colour Pencil Set" data-price="LKR 400">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">4 colours</span>
+            <img src="Images/product-filecover-box.jpg" alt="Box type file cover with clip, four colours" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Box Type File Cover</h4>
+            <p class="product-desc">A sturdy clip-front box file cover for keeping schoolwork neat and protected — available in soft pastel colours.</p>
+            <div class="product-footer">
+              <span class="price">LKR 500</span>
+              <button class="order-btn" data-id="p14" data-name="Box Type File Cover" data-price="LKR 500">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">With ruler edge</span>
+            <img src="Images/product-filecover-unicorn.jpg" alt="Unicorn clipboard file cover" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Unicorn File Cover</h4>
+            <p class="product-desc">A clipboard-style file cover with a printed ruler edge and a cheerful unicorn design — a firm favourite with kids.</p>
+            <div class="product-footer">
+              <span class="price">LKR 400</span>
+              <button class="order-btn" data-id="p15" data-name="Unicorn File Cover" data-price="LKR 400">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">Set of 4</span>
+            <img src="Images/product-food-eraser.jpg" alt="Fast food themed eraser set" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Food Eraser Set</h4>
+            <p class="product-desc">Four fun fast-food-shaped erasers — cola cup, hot dog, fries and a burger — a playful little add-on for any pencil case.</p>
+            <div class="product-footer">
+              <span class="price">LKR 60</span>
+              <button class="order-btn" data-id="p16" data-name="Food Eraser Set" data-price="LKR 60">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">3-in-1</span>
+            <img src="Images/product-writing-pad.jpg" alt="3-in-1 puzzle, marker pen and writing tablet" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Drawing Pad with Puzzle</h4>
+            <p class="product-desc">A 3-in-1 set with a wipe-clean writing tablet, marker pen and a jigsaw puzzle panel — practice writing, then play.</p>
+            <div class="product-footer">
+              <span class="price">LKR 300</span>
+              <button class="order-btn" data-id="p17" data-name="Drawing Pad with Puzzle" data-price="LKR 300">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="stationery">
+          <div class="product-visual">
+            <span class="badge">4 pcs</span>
+            <img src="Images/product-geometry-set.jpg" alt="Compass, set squares, protractor and ruler pack" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Stationery</span>
+            <h4>Compass, Set Squares &amp; Ruler Pack</h4>
+            <p class="product-desc">A 4-piece geometry set — ruler, protractor and set squares — everything needed for maths and technical drawing class.</p>
+            <div class="product-footer">
+              <span class="price">LKR 200</span>
+              <button class="order-btn" data-id="p18" data-name="Compass, Set Squares &amp; Ruler Pack" data-price="LKR 200">Add to order</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="wire-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path class="wire-path" d="M1200,32 C1150,8 1100,56 1050,32 C1000,8 950,56 900,32 C850,8 800,56 750,32 C700,8 650,56 600,32 C550,8 500,56 450,32 C400,8 350,56 300,32 C250,8 200,56 150,32 C110,16 50,42 0,28" stroke="url(#gradRainbow)"/>
+      <g transform="translate(40,26)"><g class="wire-flower"><use href="#flower-daisy-wire" x="-23" y="-27" width="46" height="58" style="--petal:var(--violet); --center:var(--ink); --stem:var(--leaf);"/></g></g>
+    </svg>
+  </div>
+
+  <!-- ================= STORY ================= -->
+  <section id="story">
+    <div class="wrap">
+      <div class="story reveal">
+        <div class="wrap">
+          <div>
+            <div class="story-strip"></div>
+            <h2>Every bloom starts as a straight wire, or a flat scrap of fabric.</h2>
+            <p>There's no factory line here — just a spool of chenille stems, a stack of fabric petals, and a lot of evenings spent twisting, folding, and shaping until something looks right. RainbowEyes started with one simple idea: flowers don't have to wilt to mean something.</p>
+            <p>Every colour, shade, and bunch is picked to be seen and felt, not just looked at once and forgotten. If you don't see the exact shade you're after, tell us — most blooms can be made to match your story.</p>
+            <p class="story-quote">"Style your story."</p>
+          </div>
+          <div class="story-art">
+            <svg viewBox="0 0 120 150" style="--petal:var(--gold); --center:var(--coral); width:110px;"><use href="#flower-fluff"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:var(--sky); --center:var(--amber); width:130px;"><use href="#flower-daisy-wire"/></svg>
+            <svg viewBox="0 0 120 150" style="--petal:var(--violet); --petal-light:#8a5aa8; width:110px;"><use href="#flower-peony"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW TO ORDER ================= -->
+  <section id="how-to-order">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Simple by design</div>
+        <h2>How to order</h2>
+        <p>No accounts, no checkout forms — just three steps between browsing and having your blooms on the way.</p>
+      </div>
+      <div class="steps-grid reveal">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Pick your blooms</h4>
+          <p>Browse the shop above and tap "Add to order" on anything that catches your eye. Mix pipe cleaner and artificial freely.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Send your list</h4>
+          <p>Your picks collect in the order bar at the bottom of the screen. One tap sends the full list straight to us on WhatsApp.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>We craft &amp; confirm</h4>
+          <p>We'll confirm colours, pricing, and delivery or pickup with you directly, then get twisting and stitching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CARE / INFO ================= -->
+  <section id="care">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Good to know</div>
+        <h2>Colours, care, and custom orders</h2>
+      </div>
+      <div class="care-grid reveal">
+        <div class="care-card">
+          <div class="dot" style="background:var(--coral)"></div>
+          <h4>Custom colours</h4>
+          <p>Have a shade in mind that isn't in the shop? Most designs can be twisted or stitched to match — just message us with a reference.</p>
+        </div>
+        <div class="care-card">
+          <div class="dot" style="background:var(--leaf)"></div>
+          <h4>Caring for your blooms</h4>
+          <p>Pipe cleaner flowers: keep dry and out of direct sun. Artificial flowers: dust gently with a soft brush every few weeks.</p>
+        </div>
+        <div class="care-card">
+          <div class="dot" style="background:var(--sky)"></div>
+          <h4>Delivery &amp; pickup</h4>
+          <p>Local pickup and island-wide courier delivery are both available. Options and timing are confirmed when you send your order.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="rainboweyes-logo-icon.jpg" alt="RainbowEyes icon">
+        <h4>RainbowEyes</h4>
+        <p>Handmade pipe cleaner and artificial flowers, made one bloom at a time.</p>
+        <span class="footer-tagline">Style your story…</span>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#shop">Shop all blooms</a></li>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="#how-to-order">How to order</a></li>
+          <li><a href="#care">Care &amp; customs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get in touch</h5>
+        <ul>
+          <li><a href="https://wa.me/94710802421" target="_blank" rel="noopener">WhatsApp: +94 71 080 2421</a></li>
+          <li><a href="mailto:hello@rainboweyes.lk">hello@rainboweyes.lk</a></li>
+          <li><a href="https://instagram.com/rainboweyes.lk" target="_blank" rel="noopener">@rainboweyes.lk</a></li>
+        </ul>
+        <a href="https://wa.me/94710802421" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm footer-contact-btn">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <p>© 2026 RainbowEyes. Handmade with care.</p>
+      <p>Every bloom made to order — colours may vary slightly, on purpose.</p>
+    </div>
+  </div>
+  <div class="rainbow-strip"></div>
+</footer>
+
+<!-- ================= THEME SWITCHER ================= -->
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-fab" id="themeFabBtn" aria-label="Customize site colours" aria-expanded="false" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="9" r="1.1" fill="currentColor" stroke="none"/>
+      <circle cx="15.5" cy="14" r="1.1" fill="currentColor" stroke="none"/>
+      <circle cx="9.5" cy="14.5" r="1.1" fill="currentColor" stroke="none"/>
+    </svg>
+  </button>
+  <div class="theme-panel" id="themePanel">
+    <h5>Make it yours</h5>
+    <p>Try RainbowEyes in a different mood.</p>
+    <div class="theme-options">
+      <button class="theme-option active" data-theme="rainbow" type="button"><span class="theme-swatch-preview theme-rainbow"></span>Rainbow</button>
+      <button class="theme-option" data-theme="pastel" type="button"><span class="theme-swatch-preview theme-pastel"></span>Pastel Bloom</button>
+      <button class="theme-option" data-theme="sunset" type="button"><span class="theme-swatch-preview theme-sunset"></span>Sunset Bouquet</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FLOATING ORDER BAR ================= -->
+<div class="order-bar" id="orderBar">
+  <span><strong id="orderCount">0</strong> item(s) selected</span>
+  <a href="#" class="btn btn-whatsapp btn-sm" id="orderWhatsappBtn" target="_blank" rel="noopener">Send order on WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ----- WhatsApp number: country code, no + or spaces -----
+  // Set from "+71 080 2421" — read as a Sri Lankan mobile number (+94 71 080 2421).
+  // If that's not the right number, just edit the digits below.
+  var WHATSAPP_NUMBER = "94710802421";
+
+  // ----- Sticky nav shrink -----
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, {passive:true});
+
+  // ----- Mobile nav toggle -----
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+  });
+
+  // ----- Reveal on scroll -----
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealEls.forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+  // Safety net: guarantee every section is visible even if the observer
+  // never fires for a given element (slow devices, odd viewports, etc).
+  setTimeout(function(){
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }, 2500);
+
+  // ----- Wire divider draw-on-scroll -----
+  try{
+    var wirePaths = document.querySelectorAll('.wire-path');
+    wirePaths.forEach(function(path){
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+    if('IntersectionObserver' in window){
+      var wireObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.style.strokeDashoffset = '0';
+            var divider = entry.target.closest('.wire-divider');
+            if(divider){ divider.classList.add('in-view'); }
+            wireObserver.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.4});
+      wirePaths.forEach(function(p){ wireObserver.observe(p); });
+    } else {
+      wirePaths.forEach(function(p){ p.style.strokeDashoffset = '0'; });
+    }
+  } catch(err){
+    document.querySelectorAll('.wire-path').forEach(function(p){ p.style.strokeDashoffset = '0'; });
+  }
+
+  // ----- Category card quick-links -> filter + scroll -----
+  document.querySelectorAll('[data-filter-link]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = link.getAttribute('data-filter-link');
+      setFilter(target);
+      document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // ----- Shop filters -----
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var productCards = document.querySelectorAll('.product-card');
+  function setFilter(filter){
+    filterBtns.forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+    });
+    productCards.forEach(function(card){
+      var match = filter === 'all' || card.getAttribute('data-category') === filter;
+      var wasHidden = card.classList.contains('hidden');
+      card.classList.toggle('hidden', !match);
+      if(match && wasHidden){
+        card.classList.remove('pop-in');
+        void card.offsetWidth;
+        card.classList.add('pop-in');
+      }
+    });
+  }
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){ setFilter(btn.getAttribute('data-filter')); });
+  });
+
+  // ----- Petal burst micro-celebration on "Add to order" -----
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var burstColors = ['var(--coral)','var(--amber)','var(--gold)','var(--leaf)','var(--sky)','var(--violet)'];
+  function spawnPetalBurst(originEl){
+    if(prefersReducedMotion) return;
+    var rect = originEl.getBoundingClientRect();
+    var originX = rect.left + rect.width / 2 + window.scrollX;
+    var originY = rect.top + rect.height / 2 + window.scrollY;
+    for(var i = 0; i < 7; i++){
+      var petal = document.createElement('span');
+      petal.className = 'petal-burst';
+      var angle = Math.random() * Math.PI * 2;
+      var dist = 34 + Math.random() * 40;
+      petal.style.setProperty('--tx', (Math.cos(angle) * dist) + 'px');
+      petal.style.setProperty('--ty', (Math.sin(angle) * dist) + 'px');
+      petal.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+      petal.style.background = burstColors[i % burstColors.length];
+      petal.style.left = originX + 'px';
+      petal.style.top = originY + 'px';
+      document.body.appendChild(petal);
+      petal.addEventListener('animationend', function(){ this.remove(); });
+    }
+  }
+
+  // ----- Order selection + WhatsApp order bar -----
+  var selectedItems = {};
+  var orderBar = document.getElementById('orderBar');
+  var orderCount = document.getElementById('orderCount');
+  var orderWhatsappBtn = document.getElementById('orderWhatsappBtn');
+
+  function updateOrderBar(){
+    var ids = Object.keys(selectedItems);
+    orderCount.textContent = ids.length;
+    orderBar.classList.toggle('show', ids.length > 0);
+
+    var lines = ids.map(function(id){
+      var item = selectedItems[id];
+      return "- " + item.name + " (" + item.price + ")";
+    });
+    var message = "Hi RainbowEyes! I'd like to order:\n" + lines.join("\n") + "\n\nThank you!";
+    orderWhatsappBtn.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  }
+
+  document.querySelectorAll('.order-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-id');
+      if(selectedItems[id]){
+        delete selectedItems[id];
+        btn.classList.remove('selected');
+        btn.textContent = 'Add to order';
+      } else {
+        selectedItems[id] = {
+          name: btn.getAttribute('data-name'),
+          price: btn.getAttribute('data-price')
+        };
+        btn.classList.add('selected');
+        btn.textContent = 'Added ✓';
+        spawnPetalBurst(btn);
+      }
+      updateOrderBar();
+    });
+  });
+
+  // ----- Scroll-progress rail (flower rides the rainbow as you scroll) -----
+  var scrollRailFill = document.getElementById('scrollRailFill');
+  if(scrollRailFill){
+    var railTicking = false;
+    var updateScrollRail = function(){
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      scrollRailFill.style.width = pct + '%';
+      railTicking = false;
+    };
+    window.addEventListener('scroll', function(){
+      if(!railTicking){ window.requestAnimationFrame(updateScrollRail); railTicking = true; }
+    }, {passive:true});
+    window.addEventListener('resize', updateScrollRail);
+    updateScrollRail();
+  }
+
+  // ----- Site theme switcher (Rainbow / Pastel Bloom / Sunset Bouquet) -----
+  var themeFabBtn = document.getElementById('themeFabBtn');
+  var themePanel = document.getElementById('themePanel');
+  var themeSwitcher = document.getElementById('themeSwitcher');
+  if(themeFabBtn && themePanel && themeSwitcher){
+    themeFabBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = themePanel.classList.toggle('open');
+      themeFabBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e){
+      if(!themeSwitcher.contains(e.target)){
+        themePanel.classList.remove('open');
+        themeFabBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.querySelectorAll('.theme-option').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var theme = btn.getAttribute('data-theme');
+        if(theme === 'rainbow'){ document.documentElement.removeAttribute('data-theme'); }
+        else { document.documentElement.setAttribute('data-theme', theme); }
+        document.querySelectorAll('.theme-option').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  // ----- Design-your-own bouquet customizer -----
+  var previewFlowerEl = document.getElementById('previewFlower');
+  var previewUseEl = document.getElementById('previewUse');
+  var previewColorLabelEl = document.getElementById('previewColorLabel');
+  var previewTypeLabelEl = document.getElementById('previewTypeLabel');
+  var typeToggleEl = document.getElementById('typeToggle');
+  var shapeToggleEl = document.getElementById('shapeToggle');
+  var colorSwatchesEl = document.getElementById('colorSwatches');
+  var qtyMinusBtn = document.getElementById('qtyMinus');
+  var qtyPlusBtn = document.getElementById('qtyPlus');
+  var qtyValueEl = document.getElementById('qtyValue');
+  var customPriceEl = document.getElementById('customPrice');
+  var addCustomBtn = document.getElementById('addCustomBtn');
+
+  if(previewFlowerEl && typeToggleEl && shapeToggleEl && colorSwatchesEl && addCustomBtn){
+    var basePrices = { pipe: 220, artificial: 380 };
+    var shapeLabels = { 'flower-fluff':'Pompom', 'flower-daisy-wire':'Daisy', 'flower-peony':'Peony', 'flower-orchid':'Orchid' };
+    var typeLabels = { pipe:'Pipe Cleaner', artificial:'Artificial' };
+    var customState = { type:'pipe', shape:'flower-fluff', color:'var(--coral)', colorLabel:'Coral', qty:3 };
+
+    function formatLKR(n){ return 'LKR ' + n.toLocaleString('en-US'); }
+
+    function pulsePreview(){
+      previewFlowerEl.classList.remove('pulse');
+      void previewFlowerEl.offsetWidth;
+      previewFlowerEl.classList.add('pulse');
+    }
+
+    function bump(el){
+      el.classList.remove('bump');
+      void el.offsetWidth;
+      el.classList.add('bump');
+    }
+
+    function applyPreview(){
+      previewUseEl.setAttribute('href', '#' + customState.shape);
+      previewFlowerEl.style.setProperty('--petal', customState.color);
+      previewFlowerEl.style.setProperty('--center', 'var(--ink)');
+      previewFlowerEl.style.setProperty('--stem', 'var(--leaf)');
+      previewColorLabelEl.textContent = customState.colorLabel;
+      previewTypeLabelEl.textContent = typeLabels[customState.type];
+      pulsePreview();
+    }
+
+    function updateCustomPrice(){
+      var total = basePrices[customState.type] * customState.qty;
+      customPriceEl.textContent = formatLKR(total);
+      bump(customPriceEl);
+    }
+
+    typeToggleEl.querySelectorAll('.pill-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        typeToggleEl.querySelectorAll('.pill-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        customState.type = btn.getAttribute('data-type');
+        var firstMatch = null;
+        shapeToggleEl.querySelectorAll('.shape-btn').forEach(function(sb){
+          var matches = sb.getAttribute('data-for') === customState.type;
+          sb.classList.toggle('shape-visible', matches);
+          sb.classList.remove('active');
+          if(matches && !firstMatch){ firstMatch = sb; }
+        });
+        if(firstMatch){
+          firstMatch.classList.add('active');
+          customState.shape = firstMatch.getAttribute('data-shape');
+        }
+        applyPreview();
+        updateCustomPrice();
+      });
+    });
+
+    shapeToggleEl.querySelectorAll('.shape-btn').forEach(function(btn){
+      if(btn.getAttribute('data-for') === customState.type){ btn.classList.add('shape-visible'); }
+      btn.addEventListener('click', function(){
+        shapeToggleEl.querySelectorAll('.shape-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        customState.shape = btn.getAttribute('data-shape');
+        applyPreview();
+      });
+    });
+
+    colorSwatchesEl.querySelectorAll('.swatch').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        colorSwatchesEl.querySelectorAll('.swatch').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        customState.color = btn.getAttribute('data-color');
+        customState.colorLabel = btn.getAttribute('data-label');
+        applyPreview();
+      });
+    });
+
+    if(qtyMinusBtn && qtyPlusBtn && qtyValueEl){
+      qtyMinusBtn.addEventListener('click', function(){
+        if(customState.qty > 1){
+          customState.qty -= 1;
+          qtyValueEl.textContent = customState.qty;
+          bump(qtyValueEl);
+          updateCustomPrice();
+        }
+      });
+      qtyPlusBtn.addEventListener('click', function(){
+        if(customState.qty < 12){
+          customState.qty += 1;
+          qtyValueEl.textContent = customState.qty;
+          bump(qtyValueEl);
+          updateCustomPrice();
+        }
+      });
+    }
+
+    addCustomBtn.addEventListener('click', function(){
+      var total = basePrices[customState.type] * customState.qty;
+      var id = 'custom-' + Date.now();
+      var name = 'Custom ' + customState.colorLabel + ' ' + shapeLabels[customState.shape] +
+        ' Bouquet (' + customState.qty + ' stems, ' + typeLabels[customState.type] + ')';
+      selectedItems[id] = { name: name, price: formatLKR(total) };
+      updateOrderBar();
+      spawnPetalBurst(addCustomBtn);
+      addCustomBtn.textContent = 'Added to order ✓';
+      addCustomBtn.classList.add('added');
+      setTimeout(function(){
+        addCustomBtn.textContent = 'Add my bouquet to order';
+        addCustomBtn.classList.remove('added');
+      }, 1800);
+    });
+  }
+
+  // ----- Design-your-own gift box customizer -----
+  var previewGiftboxEl = document.getElementById('previewGiftbox');
+  var giftSizeToggleEl = document.getElementById('giftSizeToggle');
+  var giftColorSwatchesEl = document.getElementById('giftColorSwatches');
+  var addonListEl = document.getElementById('addonList');
+  var giftPriceEl = document.getElementById('giftPrice');
+  var giftPreviewCaptionEl = document.getElementById('giftPreviewCaption');
+  var addGiftBtnEl = document.getElementById('addGiftBtn');
+  var previewGiftChocEl = document.getElementById('previewGiftChoc');
+  var previewGiftFlowerEl = document.getElementById('previewGiftFlower');
+  var previewGiftCardEl = document.getElementById('previewGiftCard');
+  var previewGiftConfettiEl = document.getElementById('previewGiftConfetti');
+  var previewGiftToyEl = document.getElementById('previewGiftToy');
+  var previewGiftToyTeddyEl = document.getElementById('previewGiftToyTeddy');
+  var previewGiftToyBunnyEl = document.getElementById('previewGiftToyBunny');
+
+  if(previewGiftboxEl && giftSizeToggleEl && giftColorSwatchesEl && addonListEl && addGiftBtnEl){
+    var giftAddonBasePrice = { flower: 350, card: 100, confetti: 80 };
+    var giftChocColors = {
+      milk: ['#B5793A', '#B5793A', '#B5793A'],
+      dark: ['#5C3A1E', '#5C3A1E', '#5C3A1E'],
+      assorted: ['#B5793A', '#5C3A1E', '#F0E1C8']
+    };
+    var giftState = {
+      size: 'small', sizePrice: 650,
+      color: 'var(--coral)', colorLabel: 'Coral',
+      addons: { chocolate:false, toy:false, flower:false, card:false, confetti:false },
+      chocoType: 'milk', chocoPrice: 300,
+      toyType: 'teddy', toyPrice: 450
+    };
+
+    function formatGiftLKR(n){ return 'LKR ' + n.toLocaleString('en-US'); }
+
+    function bumpGift(el){
+      el.classList.remove('bump');
+      void el.offsetWidth;
+      el.classList.add('bump');
+    }
+
+    function toggleGiftLayer(el, show){
+      if(!el) return;
+      if(show){
+        el.classList.remove('hidden');
+        void el.offsetWidth;
+        el.classList.remove('pop');
+        void el.offsetWidth;
+        el.classList.add('pop');
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('pop');
+      }
+    }
+
+    function applyBoxColor(){
+      previewGiftboxEl.style.setProperty('--box', giftState.color);
+    }
+
+    function applyChocColors(){
+      var colors = giftChocColors[giftState.chocoType] || giftChocColors.milk;
+      previewGiftboxEl.style.setProperty('--choc1', colors[0]);
+      previewGiftboxEl.style.setProperty('--choc2', colors[1]);
+      previewGiftboxEl.style.setProperty('--choc3', colors[2]);
+    }
+
+    function updateGiftCaption(){
+      var sizeLabel = giftState.size.charAt(0).toUpperCase() + giftState.size.slice(1);
+      if(giftPreviewCaptionEl){ giftPreviewCaptionEl.textContent = sizeLabel + ' · ' + giftState.colorLabel + ' box'; }
+    }
+
+    function updateGiftPrice(){
+      var total = giftState.sizePrice;
+      if(giftState.addons.chocolate){ total += giftState.chocoPrice; }
+      if(giftState.addons.toy){ total += giftState.toyPrice; }
+      if(giftState.addons.flower){ total += giftAddonBasePrice.flower; }
+      if(giftState.addons.card){ total += giftAddonBasePrice.card; }
+      if(giftState.addons.confetti){ total += giftAddonBasePrice.confetti; }
+      giftPriceEl.textContent = formatGiftLKR(total);
+      bumpGift(giftPriceEl);
+    }
+
+    giftSizeToggleEl.querySelectorAll('.pill-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        giftSizeToggleEl.querySelectorAll('.pill-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        giftState.size = btn.getAttribute('data-size');
+        giftState.sizePrice = parseInt(btn.getAttribute('data-price'), 10) || 0;
+        updateGiftCaption();
+        updateGiftPrice();
+      });
+    });
+
+    giftColorSwatchesEl.querySelectorAll('.swatch').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        giftColorSwatchesEl.querySelectorAll('.swatch').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        giftState.color = btn.getAttribute('data-color');
+        giftState.colorLabel = btn.getAttribute('data-label');
+        applyBoxColor();
+        updateGiftCaption();
+      });
+    });
+
+    var giftLayerMap = {
+      chocolate: previewGiftChocEl,
+      toy: previewGiftToyEl,
+      flower: previewGiftFlowerEl,
+      card: previewGiftCardEl,
+      confetti: previewGiftConfettiEl
+    };
+
+    addonListEl.querySelectorAll('.chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var addon = chip.getAttribute('data-addon');
+        var isActive = chip.classList.toggle('active');
+        giftState.addons[addon] = isActive;
+        var subPill = addonListEl.querySelector('.sub-pill[data-for="' + addon + '"]');
+        if(subPill){ subPill.classList.toggle('sub-visible', isActive); }
+        if(addon === 'chocolate' && isActive){ applyChocColors(); }
+        toggleGiftLayer(giftLayerMap[addon], isActive);
+        updateGiftPrice();
+      });
+    });
+
+    addonListEl.querySelectorAll('.sub-pill-btn').forEach(function(sub){
+      sub.addEventListener('click', function(){
+        var group = sub.closest('.sub-pill');
+        var forAddon = group.getAttribute('data-for');
+        group.querySelectorAll('.sub-pill-btn').forEach(function(b){ b.classList.remove('active'); });
+        sub.classList.add('active');
+        var price = parseInt(sub.getAttribute('data-price'), 10) || 0;
+        var subType = sub.getAttribute('data-sub');
+
+        if(forAddon === 'chocolate'){
+          giftState.chocoType = subType;
+          giftState.chocoPrice = price;
+          if(giftState.addons.chocolate){ applyChocColors(); toggleGiftLayer(previewGiftChocEl, true); }
+        } else if(forAddon === 'toy'){
+          giftState.toyType = subType;
+          giftState.toyPrice = price;
+          if(subType === 'teddy'){
+            if(previewGiftToyTeddyEl){ previewGiftToyTeddyEl.classList.remove('hidden'); }
+            if(previewGiftToyBunnyEl){ previewGiftToyBunnyEl.classList.add('hidden'); }
+          } else {
+            if(previewGiftToyBunnyEl){ previewGiftToyBunnyEl.classList.remove('hidden'); }
+            if(previewGiftToyTeddyEl){ previewGiftToyTeddyEl.classList.add('hidden'); }
+          }
+          if(giftState.addons.toy){ toggleGiftLayer(previewGiftToyEl, true); }
+        }
+
+        var chipBtn = addonListEl.querySelector('.chip[data-addon="' + forAddon + '"]');
+        if(chipBtn){
+          var priceSpan = chipBtn.querySelector('.chip-price');
+          if(priceSpan){ priceSpan.textContent = '+' + formatGiftLKR(price); }
+        }
+        updateGiftPrice();
+      });
+    });
+
+    addGiftBtnEl.addEventListener('click', function(){
+      var total = giftState.sizePrice;
+      var parts = [];
+      if(giftState.addons.chocolate){
+        total += giftState.chocoPrice;
+        parts.push(giftState.chocoType.charAt(0).toUpperCase() + giftState.chocoType.slice(1) + ' Chocolates');
+      }
+      if(giftState.addons.toy){
+        total += giftState.toyPrice;
+        parts.push((giftState.toyType === 'teddy' ? 'Teddy Bear' : 'Bunny') + ' Soft Toy');
+      }
+      if(giftState.addons.flower){ total += giftAddonBasePrice.flower; parts.push('Flower Sprig'); }
+      if(giftState.addons.card){ total += giftAddonBasePrice.card; parts.push('Greeting Card'); }
+      if(giftState.addons.confetti){ total += giftAddonBasePrice.confetti; parts.push('Confetti Sprinkles'); }
+
+      var sizeLabel = giftState.size.charAt(0).toUpperCase() + giftState.size.slice(1);
+      var contents = parts.length ? (' with ' + parts.join(', ')) : '';
+      var name = 'Custom ' + sizeLabel + ' ' + giftState.colorLabel + ' Gift Box' + contents;
+      var id = 'giftbox-' + Date.now();
+
+      selectedItems[id] = { name: name, price: formatGiftLKR(total) };
+      updateOrderBar();
+      spawnPetalBurst(addGiftBtnEl);
+      addGiftBtnEl.textContent = 'Added to order ✓';
+      addGiftBtnEl.classList.add('added');
+      setTimeout(function(){
+        addGiftBtnEl.textContent = 'Add my gift box to order';
+        addGiftBtnEl.classList.remove('added');
+      }, 1800);
+    });
+  }
+
+  // ----- Design-your-own stationery gift box customizer -----
+  var previewStatBoxEl = document.getElementById('previewStatBox');
+  var statSizeToggleEl = document.getElementById('statSizeToggle');
+  var statColorSwatchesEl = document.getElementById('statColorSwatches');
+  var statItemListEl = document.getElementById('statItemList');
+  var statPriceEl = document.getElementById('statPrice');
+  var statPreviewCaptionEl = document.getElementById('statPreviewCaption');
+  var addStatBtnEl = document.getElementById('addStatBtn');
+  var statBoxContentsEl = document.getElementById('statBoxContents');
+
+  if(previewStatBoxEl && statSizeToggleEl && statColorSwatchesEl && statItemListEl && addStatBtnEl){
+    var statItemLabels = {
+      clay: 'Modelling Clay',
+      pencils: 'Colour Pencil Set',
+      filebox: 'Box Type File Cover',
+      fileunicorn: 'Unicorn File Cover',
+      eraser: 'Food Eraser Set',
+      pad: 'Drawing Pad with Puzzle',
+      geometry: 'Geometry Set'
+    };
+    var statState = {
+      size: 'small', sizePrice: 300,
+      color: 'var(--coral)', colorLabel: 'Coral',
+      items: { clay: true }
+    };
+    var statItemPrices = {};
+    statItemListEl.querySelectorAll('.item-chip').forEach(function(chip){
+      statItemPrices[chip.getAttribute('data-item')] = parseInt(chip.getAttribute('data-price'), 10) || 0;
+    });
+
+    function formatStatLKR(n){ return 'LKR ' + n.toLocaleString('en-US'); }
+
+    function bumpStat(el){
+      el.classList.remove('bump');
+      void el.offsetWidth;
+      el.classList.add('bump');
+    }
+
+    function applyStatBoxColor(){
+      previewStatBoxEl.style.setProperty('--box', statState.color);
+    }
+
+    function selectedStatCount(){
+      return Object.keys(statState.items).filter(function(k){ return statState.items[k]; }).length;
+    }
+
+    function updateStatCaption(){
+      var sizeLabel = statState.size.charAt(0).toUpperCase() + statState.size.slice(1);
+      var count = selectedStatCount();
+      var itemWord = count === 1 ? 'item' : 'items';
+      statPreviewCaptionEl.textContent = sizeLabel + ' · ' + statState.colorLabel + ' box · ' + (count ? count + ' ' + itemWord : 'empty');
+    }
+
+    function updateStatPrice(){
+      var total = statState.sizePrice;
+      Object.keys(statState.items).forEach(function(key){
+        if(statState.items[key]){ total += statItemPrices[key] || 0; }
+      });
+      statPriceEl.textContent = formatStatLKR(total);
+      bumpStat(statPriceEl);
+    }
+
+    statSizeToggleEl.querySelectorAll('.pill-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        statSizeToggleEl.querySelectorAll('.pill-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        statState.size = btn.getAttribute('data-size');
+        statState.sizePrice = parseInt(btn.getAttribute('data-price'), 10) || 0;
+        updateStatCaption();
+        updateStatPrice();
+      });
+    });
+
+    statColorSwatchesEl.querySelectorAll('.swatch').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        statColorSwatchesEl.querySelectorAll('.swatch').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        statState.color = btn.getAttribute('data-color');
+        statState.colorLabel = btn.getAttribute('data-label');
+        applyStatBoxColor();
+        updateStatCaption();
+      });
+    });
+
+    statItemListEl.querySelectorAll('.item-chip').forEach(function(chip){
+      var itemKey = chip.getAttribute('data-item');
+      var thumb = statBoxContentsEl ? statBoxContentsEl.querySelector('.content-thumb[data-item="' + itemKey + '"]') : null;
+      if(statState.items[itemKey] && thumb){ thumb.classList.add('show'); }
+      chip.addEventListener('click', function(){
+        var isActive = chip.classList.toggle('active');
+        statState.items[itemKey] = isActive;
+        if(thumb){
+          if(isActive){
+            thumb.classList.remove('pop');
+            thumb.classList.add('show');
+            void thumb.offsetWidth;
+            thumb.classList.add('pop');
+          } else {
+            thumb.classList.remove('show', 'pop');
+          }
+        }
+        updateStatCaption();
+        updateStatPrice();
+      });
+    });
+
+    addStatBtnEl.addEventListener('click', function(){
+      var total = statState.sizePrice;
+      var parts = [];
+      Object.keys(statState.items).forEach(function(key){
+        if(statState.items[key]){
+          total += statItemPrices[key] || 0;
+          parts.push(statItemLabels[key]);
+        }
+      });
+      var sizeLabel = statState.size.charAt(0).toUpperCase() + statState.size.slice(1);
+      var contents = parts.length ? (' with ' + parts.join(', ')) : '';
+      var name = 'Custom ' + sizeLabel + ' ' + statState.colorLabel + ' Stationery Gift Box' + contents;
+      var id = 'stationerybox-' + Date.now();
+
+      selectedItems[id] = { name: name, price: formatStatLKR(total) };
+      updateOrderBar();
+      spawnPetalBurst(addStatBtnEl);
+      addStatBtnEl.textContent = 'Added to order ✓';
+      addStatBtnEl.classList.add('added');
+      setTimeout(function(){
+        addStatBtnEl.textContent = 'Add my gift box to order';
+        addStatBtnEl.classList.remove('added');
+      }, 1800);
+    });
+
+    updateStatCaption();
+  }
+
+})();
+</script>
+
+</body>
+</html>
